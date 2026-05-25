@@ -1,7 +1,7 @@
 # QOYN Platform 🚀
 
 <p align="center">
-  <img src="https://github.com/yousef-yasin/qoyn-platform/assets/main-homepage.png" width="100%">
+  <img src="https://github.com/yousef-yasin/qoyn-platform/blob/main/assets/main-homepage.png" width="100%">
 </p>
 
 ---
