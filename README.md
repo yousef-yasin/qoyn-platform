@@ -70,13 +70,6 @@ Tracks learning progress, submissions, evaluations, and achievements.
 
 # 🖥️ Platform Preview
 
-## 🏠 Homepage
-
-<p align="center">
-  <img src="https://github.com/yousef-yasin/qoyn-platform/assets/home-preview.png" width="100%">
-</p>
-
----
 
 # 🏗️ System Architecture
 
