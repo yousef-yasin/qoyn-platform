@@ -1,0 +1,74 @@
+<?php
+require_once __DIR__ . "/includes/auth.php";
+require_login_page();
+?>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>مشاهدة فيديو</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body style="display:block">
+  <div class="container">
+    <div class="topbar">
+      <div>
+        <h1 id="title">...</h1>
+        <div class="muted" id="note"></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn primary" id="watchedBtn">تمت المشاهدة</button>
+        <a class="btn ghost" id="backBtn" href="index.php">رجوع</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div style="position:relative;padding-top:56.25%">
+        <iframe id="frame" src="" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:14px"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="muted" id="msg" style="margin-top:10px;min-height:20px"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    let trainingId = null;
+
+    async function load() {
+      const video_id = Number(qs("video_id")||0);
+      if (!video_id) return location.replace("index.php");
+
+      const v = await apiGet(`video_get.php?video_id=${video_id}`);
+      trainingId = v.training_id;
+
+      document.getElementById("title").textContent = v.title;
+      document.getElementById("frame").src = v.video_url;
+      document.getElementById("backBtn").href = `course.php?course_id=${qs("course_id")||""}`;
+      document.getElementById("note").textContent = "بعد المشاهدة اضغط: تمت المشاهدة (ليحسب التقدم).";
+    }
+
+    document.getElementById("watchedBtn").addEventListener("click", async () => {
+      const msg = document.getElementById("msg");
+      msg.textContent = "جارٍ الحفظ...";
+      try {
+        const video_id = Number(qs("video_id")||0);
+        await apiPost("video_watch.php", { video_id, watched: 1 });
+        msg.textContent = "تم ✅";
+        msg.style.color = "#86efac";
+        setTimeout(() => history.back(), 500);
+      } catch (e) {
+        msg.textContent = "فشل الحفظ ❌";
+        msg.style.color = "#fca5a5";
+      }
+    });
+
+    load().catch(err => {
+      console.error(err);
+      alert("الفيديو مقفل (بدك اشتراك) أو لست مسجل دخول.");
+      location.replace("subscription.html");
+    });
+  </script>
+</body>
+</html>

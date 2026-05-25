@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Quiz</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body style="display:block">
+  <div class="container" style="max-width:860px">
+    <div class="topbar">
+      <div>
+        <h1 id="title">Quiz</h1>
+        <div class="muted" id="subtitle"></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn ghost" href="index.php">الرئيسية</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <form id="quizForm" class="list"></form>
+      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn primary" id="submitBtn">تسليم</button>
+        <div class="muted" id="msg" style="min-height:20px"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    let quizId = 0;
+
+    async function load() {
+      quizId = Number(qs("quiz_id")||0);
+      if (!quizId) return location.replace("index.php");
+
+      const data = await apiGet(`quiz_get.php?quiz_id=${quizId}`);
+      document.getElementById("title").textContent = data.quiz.title;
+      document.getElementById("subtitle").textContent = `Pass score: ${data.quiz.pass_score}%`;
+
+      const form = document.getElementById("quizForm");
+      form.innerHTML = "";
+
+      data.questions.forEach((q, idx) => {
+        const block = document.createElement("div");
+        block.className = "item";
+        block.style.flexDirection = "column";
+        block.style.alignItems = "stretch";
+        block.innerHTML = `
+          <div><b>${idx+1}) ${escapeHtml(q.text)}</b></div>
+          <div style="margin-top:10px;display:grid;gap:8px">
+            ${q.options.map(o => `
+              <label class="item" style="cursor:pointer">
+                <input type="radio" name="q_${q.id}" value="${o.id}" />
+                <span>${escapeHtml(o.text)}</span>
+              </label>
+            `).join("")}
+          </div>
+        `;
+        form.appendChild(block);
+      });
+    }
+
+    document.getElementById("submitBtn").addEventListener("click", async (e) => {
+      e.preventDefault();
+      const msg = document.getElementById("msg");
+      msg.textContent = "جارٍ التصحيح...";
+
+      const answers = {};
+      document.querySelectorAll("#quizForm input[type=radio]:checked").forEach(r => {
+        const qid = r.name.replace("q_","");
+        answers[qid] = Number(r.value);
+      });
+
+      try {
+        const r = await apiPost("quiz_submit.php", { quiz_id: quizId, answers });
+        msg.textContent = `نتيجتك: ${r.score}% - ${r.passed ? "ناجح ✅" : "راسب ❌"}${r.awarded_coins ? " | +"+r.awarded_coins+" coins" : ""}`;
+        msg.style.color = r.passed ? "#86efac" : "#fca5a5";
+      } catch (e) {
+        console.error(e);
+        msg.textContent = "فشل التسليم ❌";
+        msg.style.color = "#fca5a5";
+      }
+    });
+
+    load().catch(() => location.replace("login.html"));
+  </script>
+</body>
+</html>

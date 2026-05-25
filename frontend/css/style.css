@@ -1,0 +1,16 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 20px;
+}
+/* ✅ إلغاء الترقيم التلقائي داخل ملخص الساعات */
+#aiCompletedHours .list {
+  counter-reset: none !important;
+}
+
+#aiCompletedHours .list .item::before,
+#aiCompletedHours .list > .item::before,
+#aiCompletedHours .item::before {
+  content: none !important;
+  display: none !important;
+}

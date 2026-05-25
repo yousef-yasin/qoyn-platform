@@ -1,0 +1,650 @@
+{
+  "assistant_name": {
+    "en": "QOYNE",
+    "ar": "QOYNE"
+  },
+  "project_summary": {
+    "en": "QOYN is a multi-role platform for students, admins, and partner companies. It combines student dashboards, profile management, courses, project phases, result tracking, chat, certificates, uploads, partner pages, and an AI job simulator. The student experience starts after login, then moves through dashboard navigation, learning content, uploads, project work, advanced phase tasks, and final reports or results.",
+    "ar": "QOYN هي منصة متعددة الأدوار للطلاب والإدارة والشركات الشريكة. تجمع بين لوحة الطالب، إدارة الملف الشخصي، الدورات، مراحل المشروع، تتبع النتائج، الشات، الشهادات، الرفع، صفحات الشركاء، ومحاكي وظائف بالذكاء الاصطناعي. تجربة الطالب تبدأ بعد تسجيل الدخول ثم ينتقل بين لوحة التحكم والمحتوى التعليمي ورفع الملفات والعمل على المراحل والمشاريع ثم مشاهدة التقارير والنتائج النهائية."
+  },
+  "fallback_help": {
+    "en": "I can help with the dashboard, profile, courses, playlists, videos, uploads, project phases, certificates, chat, company pages, admin pages, simulator flow, and result pages.",
+    "ar": "أقدر أساعدك في لوحة الطالب، الملف الشخصي، الدورات، القوائم والفيديوهات، الرفع، مراحل المشروع، الشهادات، الشات، صفحات الشركات، صفحات الإدارة، محاكي الوظائف، وصفحات النتائج."
+  },
+  "student_areas": [
+    {
+      "en": "Dashboard for quick access to the main student journey.",
+      "ar": "لوحة الطالب للوصول السريع إلى أهم أجزاء الرحلة داخل المنصة."
+    },
+    {
+      "en": "Profile page for personal and academic information.",
+      "ar": "صفحة الملف الشخصي للمعلومات الشخصية والأكاديمية."
+    },
+    {
+      "en": "Courses, playlists, and watch pages for learning content.",
+      "ar": "صفحات الدورات والقوائم ومشاهدة الفيديوهات للمحتوى التعليمي."
+    },
+    {
+      "en": "Upload areas for plans, experiences, certificates, images, and supporting documents.",
+      "ar": "مناطق رفع للخطة والخبرات والشهادات والصور والملفات الداعمة."
+    },
+    {
+      "en": "Phase 2 and Phase 3 pages for project work, collaboration, and challenges.",
+      "ar": "صفحات المرحلة الثانية والثالثة للمشاريع والتعاون والتحديات."
+    },
+    {
+      "en": "Result and report pages to review performance and readiness.",
+      "ar": "صفحات النتائج والتقارير لمراجعة الأداء والجاهزية."
+    },
+    {
+      "en": "Chat pages for communication and conversation history.",
+      "ar": "صفحات شات للتواصل ومراجعة سجل المحادثات."
+    }
+  ],
+  "pages": [
+    {
+      "file": "student-dashboard.php",
+      "title": {"en": "Student Dashboard", "ar": "لوحة الطالب"},
+      "audience": "student",
+      "keywords": ["dashboard", "student dashboard", "home", "main page", "ask qoyne", "الداشبورد", "لوحة الطالب", "الصفحة الرئيسية", "qoyne"],
+      "purpose": {
+        "en": "This is the main landing page for a logged-in student. It introduces the student, shows navigation shortcuts, and acts as the central place to open profile, phases, learning content, and help.",
+        "ar": "هذه هي الصفحة الرئيسية للطالب بعد تسجيل الدخول. ترحب بالطالب وتعرض اختصارات التنقل وتعتبر المركز الأساسي لفتح الملف الشخصي والمراحل والمحتوى التعليمي والمساعدة."
+      },
+      "details": [
+        {"en": "The page depends on an active student session and redirects to login when the session is missing.", "ar": "الصفحة تعتمد على جلسة طالب فعالة، وإذا لم توجد الجلسة يتم التحويل إلى صفحة تسجيل الدخول."},
+        {"en": "It reads the student full name and email from the session and builds the avatar initial from them.", "ar": "تقرأ اسم الطالب الكامل والبريد الإلكتروني من الجلسة وتبني حرف الأفاتار منهما."},
+        {"en": "It works as the starting point for almost every student action inside the website.", "ar": "تعمل كنقطة البداية لمعظم إجراءات الطالب داخل الموقع."},
+        {"en": "The Ask QOYNE button opens an in-page chat assistant instead of leaving the page.", "ar": "زر Ask QOYNE يفتح مساعد دردشة داخل نفس الصفحة بدون الخروج منها."}
+      ],
+      "actions": [
+        {"en": "Open profile, courses, project pages, result pages, and support areas.", "ar": "فتح الملف الشخصي والدورات وصفحات المشاريع وصفحات النتائج ومناطق الدعم."},
+        {"en": "Use QOYNE to ask about any page, button, workflow, or feature.", "ar": "استخدام QOYNE للسؤال عن أي صفحة أو زر أو مسار استخدام أو ميزة."}
+      ],
+      "flow": [
+        {"en": "Login -> open dashboard -> choose the needed section -> continue to the target page.", "ar": "تسجيل الدخول -> فتح لوحة الطالب -> اختيار القسم المطلوب -> الانتقال إلى الصفحة المستهدفة."},
+        {"en": "If the student is confused, QOYNE can explain the current page or guide the next step.", "ar": "إذا كان الطالب مترددًا أو محتارًا، يستطيع QOYNE شرح الصفحة الحالية أو توجيهه للخطوة التالية."}
+      ]
+    },
+    {
+      "file": "student_profile.php",
+      "title": {"en": "My Profile", "ar": "ملفي الشخصي"},
+      "audience": "student",
+      "keywords": ["profile", "student profile", "my profile", "account", "الملف الشخصي", "الحساب"],
+      "purpose": {
+        "en": "This page displays the student's profile in a polished layout and is used to review personal, academic, and account-related information.",
+        "ar": "هذه الصفحة تعرض ملف الطالب الشخصي بتصميم احترافي وتستخدم لمراجعة المعلومات الشخصية والأكاديمية ومعلومات الحساب."
+      },
+      "details": [
+        {"en": "It requires a valid logged-in session before the student can access it.", "ar": "تحتاج الصفحة إلى جلسة تسجيل دخول صحيحة قبل أن يستطيع الطالب الدخول إليها."},
+        {"en": "The page was styled as a premium page with cards, sections, and a strong visual hierarchy.", "ar": "تم تصميم الصفحة بشكل احترافي باستخدام بطاقات وأقسام وتسلسل بصري واضح."},
+        {"en": "It is the right place when the student wants to check identity details or account information.", "ar": "هذه هي الصفحة المناسبة عندما يريد الطالب التحقق من بياناته أو معلومات حسابه."}
+      ],
+      "actions": [
+        {"en": "Review personal information and academic context.", "ar": "مراجعة المعلومات الشخصية والسياق الأكاديمي."},
+        {"en": "Use it as the main identity page for the student account.", "ar": "استخدامها كصفحة الهوية الأساسية لحساب الطالب."}
+      ],
+      "flow": [
+        {"en": "Dashboard/avatar menu -> profile page -> review the displayed sections and details.", "ar": "لوحة الطالب أو قائمة الأفاتار -> صفحة الملف الشخصي -> مراجعة الأقسام والتفاصيل الظاهرة."}
+      ]
+    },
+    {
+      "file": "my_phase3_results.php",
+      "title": {"en": "Phase 3 Results", "ar": "نتائج المرحلة الثالثة"},
+      "audience": "student",
+      "keywords": ["results", "phase 3 results", "score", "evaluation", "result page", "النتائج", "نتيجتي", "التقييم"],
+      "purpose": {
+        "en": "This page shows the student's Phase 3 outcomes, including performance, evaluation status, and result-related summaries.",
+        "ar": "هذه الصفحة تعرض نتائج الطالب في المرحلة الثالثة بما يشمل الأداء وحالة التقييم والملخصات المرتبطة بالنتيجة."
+      },
+      "details": [
+        {"en": "It is the main page to open when the student asks where to see Phase 3 results.", "ar": "هذه الصفحة هي المكان الأساسي عندما يسأل الطالب أين يشاهد نتائج المرحلة الثالثة."},
+        {"en": "The page layout uses cards and top bars to organize result blocks clearly.", "ar": "تستخدم الصفحة بطاقات وشريطًا علويًا لتنظيم عناصر النتيجة بشكل واضح."},
+        {"en": "It is protected by the session, so users are redirected if they are not logged in.", "ar": "الصفحة محمية بالجلسة، لذلك يتم تحويل المستخدم إذا لم يكن مسجلًا للدخول."}
+      ],
+      "actions": [
+        {"en": "Read scores, statuses, and performance summaries.", "ar": "قراءة الدرجات والحالات وملخصات الأداء."},
+        {"en": "Use it to understand how far the student has progressed in Phase 3.", "ar": "استخدامها لفهم مدى تقدم الطالب في المرحلة الثالثة."}
+      ],
+      "flow": [
+        {"en": "Dashboard or navigation -> Phase 3 result page -> review each result block.", "ar": "لوحة الطالب أو شريط التنقل -> صفحة نتائج المرحلة الثالثة -> مراجعة كل جزء من النتيجة."}
+      ]
+    },
+    {
+      "file": "my_courses.php",
+      "title": {"en": "My Courses", "ar": "دوراتي"},
+      "audience": "student",
+      "keywords": ["my courses", "courses", "lessons", "learning", "دوراتي", "الدورات", "التعلم"],
+      "purpose": {
+        "en": "This page presents the courses already linked to the student and acts as the personalized learning hub.",
+        "ar": "هذه الصفحة تعرض الدورات المرتبطة بالطالب وتعمل كمركز تعلّم شخصي له."
+      },
+      "details": [
+        {"en": "It is intended for students who want to continue their assigned or enrolled learning content.", "ar": "مخصصة للطلاب الذين يريدون متابعة المحتوى التعليمي المسند لهم أو المسجلين فيه."},
+        {"en": "It normally connects to playlists, lesson videos, and course-specific content pages.", "ar": "ترتبط عادة بقوائم التشغيل وفيديوهات الدروس وصفحات المحتوى الخاصة بكل دورة."},
+        {"en": "The page uses a wide layout with cards and clear spacing for browsing material.", "ar": "تستخدم الصفحة تخطيطًا واسعًا مع بطاقات ومسافات واضحة لتصفح المواد."}
+      ],
+      "actions": [
+        {"en": "Open a course and continue learning.", "ar": "فتح دورة ومتابعة التعلّم."},
+        {"en": "Move into related playlist or watch pages.", "ar": "الانتقال إلى صفحات القوائم أو المشاهدة المرتبطة."}
+      ],
+      "flow": [
+        {"en": "Open My Courses -> pick a course -> enter playlist or lesson watching flow.", "ar": "فتح دوراتي -> اختيار دورة -> الدخول إلى مسار القائمة أو مشاهدة الدرس."}
+      ]
+    },
+    {
+      "file": "courses.php",
+      "title": {"en": "Courses", "ar": "الدورات"},
+      "audience": "student",
+      "keywords": ["courses page", "browse courses", "available courses", "الدورات", "تصفح الدورات"],
+      "purpose": {
+        "en": "This page is used to browse course content and discover or open learning material available in the platform.",
+        "ar": "تستخدم هذه الصفحة لتصفح محتوى الدورات واكتشاف أو فتح المواد التعليمية المتاحة في المنصة."
+      },
+      "details": [
+        {"en": "It is a broader browsing page compared with My Courses, which is more personal.", "ar": "هي صفحة أوسع للتصفح مقارنة بصفحة دوراتي التي تكون أكثر تخصيصًا للطالب."},
+        {"en": "It includes a branded top bar and a layout suitable for listing learning options.", "ar": "تحتوي على شريط علوي متناسق مع هوية الموقع وتخطيط مناسب لعرض خيارات التعلّم."}
+      ],
+      "actions": [
+        {"en": "Browse available courses and open details.", "ar": "تصفح الدورات المتاحة وفتح التفاصيل."},
+        {"en": "Move into videos and playlists for actual study.", "ar": "الانتقال إلى الفيديوهات والقوائم لبدء الدراسة الفعلية."}
+      ]
+    },
+    {
+      "file": "playlist.php",
+      "title": {"en": "Playlist", "ar": "قائمة تشغيل"},
+      "audience": "student",
+      "keywords": ["playlist", "course playlist", "list of lessons", "قائمة التشغيل", "قائمة الدروس"],
+      "purpose": {
+        "en": "This page organizes learning videos or lessons into a structured sequence so the student can follow content in order.",
+        "ar": "تنظم هذه الصفحة فيديوهات أو دروس التعلّم ضمن تسلسل مرتب حتى يتمكن الطالب من متابعة المحتوى بالترتيب."
+      },
+      "details": [
+        {"en": "It usually comes after opening a course.", "ar": "تأتي عادة بعد فتح دورة محددة."},
+        {"en": "It helps the student move from one lesson to the next without losing track.", "ar": "تساعد الطالب على الانتقال من درس لآخر بدون فقدان الترتيب."}
+      ],
+      "actions": [
+        {"en": "Choose a lesson from the list.", "ar": "اختيار درس من القائمة."},
+        {"en": "Continue through the planned order of videos or modules.", "ar": "المتابعة حسب الترتيب المخطط للفيديوهات أو الوحدات."}
+      ]
+    },
+    {
+      "file": "student_playlist.php",
+      "title": {"en": "Student Playlist", "ar": "قائمة الطالب"},
+      "audience": "student",
+      "keywords": ["student playlist", "playlist student", "قائمة الطالب"],
+      "purpose": {
+        "en": "A student-focused playlist page used to present assigned learning content in a student workflow.",
+        "ar": "صفحة قائمة مخصصة للطالب لعرض المحتوى التعليمي المخصص له ضمن مسار تعلم خاص."
+      },
+      "details": [
+        {"en": "It is related to course delivery and ordered learning materials.", "ar": "مرتبطة بتقديم الدورات والمواد التعليمية المرتبة."}
+      ],
+      "actions": [
+        {"en": "Open lessons and continue course progress.", "ar": "فتح الدروس ومتابعة التقدم في الدورة."}
+      ]
+    },
+    {
+      "file": "student_watch.php",
+      "title": {"en": "Student Watch Page", "ar": "صفحة مشاهدة الطالب"},
+      "audience": "student",
+      "keywords": ["watch", "video page", "watch lesson", "المشاهدة", "صفحة الفيديو"],
+      "purpose": {
+        "en": "This page is used when the student is actively watching a lesson or learning video.",
+        "ar": "تستخدم هذه الصفحة عندما يكون الطالب في مرحلة مشاهدة درس أو فيديو تعليمي بشكل فعلي."
+      },
+      "details": [
+        {"en": "It usually opens from a playlist or course page.", "ar": "تفتح غالبًا من صفحة قائمة أو من صفحة دورة."},
+        {"en": "It is where actual learning consumption happens, not just browsing.", "ar": "هي المكان الذي تتم فيه مشاهدة المحتوى الفعلية وليس مجرد التصفح."}
+      ],
+      "actions": [
+        {"en": "Play the lesson and continue consuming the learning material.", "ar": "تشغيل الدرس ومتابعة استهلاك المحتوى التعليمي."}
+      ]
+    },
+    {
+      "file": "student_chat.php",
+      "title": {"en": "Student Chat", "ar": "شات الطالب"},
+      "audience": "student",
+      "keywords": ["chat", "student chat", "messages", "thread", "الشات", "المحادثة", "الرسائل"],
+      "purpose": {
+        "en": "This page is the student's main communication area for messages, threads, and conversation history.",
+        "ar": "هذه الصفحة هي منطقة التواصل الأساسية للطالب للرسائل والخيوط وسجل المحادثات."
+      },
+      "details": [
+        {"en": "It is different from the small QOYNE helper chat on the dashboard because this page is the full messaging area.", "ar": "تختلف عن نافذة QOYNE الصغيرة في لوحة الطالب لأن هذه الصفحة هي منطقة الرسائل الكاملة."},
+        {"en": "It can contain unread counters, thread lists, and message bodies.", "ar": "قد تحتوي على عدادات غير المقروء وقائمة محادثات ومحتوى الرسائل."}
+      ],
+      "actions": [
+        {"en": "Open a thread, read messages, and send new messages.", "ar": "فتح محادثة وقراءة الرسائل وإرسال رسائل جديدة."}
+      ]
+    },
+    {
+      "file": "upload_plan.php",
+      "title": {"en": "Upload Plan", "ar": "رفع الخطة"},
+      "audience": "student",
+      "keywords": ["upload plan", "plan", "study plan", "رفع الخطة", "الخطة"],
+      "purpose": {
+        "en": "This page is for uploading a study plan or related academic planning files to the platform.",
+        "ar": "هذه الصفحة مخصصة لرفع الخطة الدراسية أو ملفات التخطيط الأكاديمي المرتبطة بها إلى المنصة."
+      },
+      "details": [
+        {"en": "The student chooses one or more files, sees a selected-file badge, and submits the files.", "ar": "يختار الطالب ملفًا أو أكثر، ويظهر شريط يبين الملفات المختارة، ثم يقوم بالإرسال."},
+        {"en": "The page can support drag and drop in addition to normal file selection.", "ar": "يمكن أن تدعم الصفحة السحب والإفلات بالإضافة إلى اختيار الملفات المعتاد."},
+        {"en": "It is used when the platform needs planning evidence or structured study information from the student.", "ar": "تستخدم عندما تحتاج المنصة إلى إثباتات التخطيط أو معلومات دراسية منظمة من الطالب."}
+      ],
+      "actions": [
+        {"en": "Choose files and upload them.", "ar": "اختيار الملفات ورفعها."},
+        {"en": "Review the selected-file area before submitting.", "ar": "مراجعة منطقة الملفات المختارة قبل الإرسال."}
+      ]
+    },
+    {
+      "file": "upload_experience.php",
+      "title": {"en": "Upload Experience / Courses", "ar": "رفع الخبرات أو الدورات"},
+      "audience": "student",
+      "keywords": ["upload experience", "experience", "attachments", "certificate upload", "رفع الخبرات", "رفع الدورات", "المرفقات"],
+      "purpose": {
+        "en": "This page allows the student to upload experience files, training certificates, or extra supporting documents.",
+        "ar": "تسمح هذه الصفحة للطالب برفع ملفات الخبرة أو شهادات التدريب أو أي وثائق داعمة إضافية."
+      },
+      "details": [
+        {"en": "The student can enter an optional title before uploading the file.", "ar": "يمكن للطالب كتابة عنوان اختياري قبل رفع الملف."},
+        {"en": "Accepted uploads include PDFs and images according to the page file input rules.", "ar": "تشمل الملفات المقبولة PDF والصور حسب إعدادات حقل الرفع في الصفحة."},
+        {"en": "The page also shows the student's existing uploaded attachments in a list.", "ar": "تعرض الصفحة أيضًا قائمة بالمرفقات التي رفعها الطالب مسبقًا."}
+      ],
+      "actions": [
+        {"en": "Attach the file and submit it.", "ar": "إرفاق الملف ثم إرساله."},
+        {"en": "Open previously uploaded items from the attachment list.", "ar": "فتح العناصر المرفوعة سابقًا من قائمة المرفقات."}
+      ],
+      "flow": [
+        {"en": "Write an optional title -> choose file -> upload -> refresh and review the attachment list.", "ar": "كتابة عنوان اختياري -> اختيار الملف -> الرفع -> تحديث ومراجعة قائمة المرفقات."}
+      ]
+    },
+    {
+      "file": "plan.php",
+      "title": {"en": "Study Plan Page", "ar": "صفحة الخطة"},
+      "audience": "student",
+      "keywords": ["plan page", "study plan page", "صفحة الخطة"],
+      "purpose": {
+        "en": "This page is related to displaying or managing plan-related information for the student.",
+        "ar": "هذه الصفحة مرتبطة بعرض أو إدارة المعلومات المتعلقة بالخطة الخاصة بالطالب."
+      },
+      "details": [
+        {"en": "It complements the upload flow by giving the student a place to review or use plan data.", "ar": "تكمل مسار الرفع من خلال منح الطالب مكانًا لمراجعة أو استخدام بيانات الخطة."}
+      ]
+    },
+    {
+      "file": "my_project.php",
+      "title": {"en": "Phase 2 Project", "ar": "مشروع المرحلة الثانية"},
+      "audience": "student",
+      "keywords": ["project", "phase 2", "my project", "project page", "مشروعي", "مشروع المرحلة الثانية", "المرحلة الثانية"],
+      "purpose": {
+        "en": "This page is the student's Phase 2 project workspace and is used to follow project content, progress, and related deliverables.",
+        "ar": "هذه الصفحة هي مساحة عمل الطالب لمشروع المرحلة الثانية وتستخدم لمتابعة محتوى المشروع وتقدمه وتسليماته المرتبطة به."
+      },
+      "details": [
+        {"en": "It belongs to the project phase of the website rather than the course-only area.", "ar": "تنتمي هذه الصفحة إلى جزء المشاريع في الموقع وليس فقط إلى جزء الدورات."},
+        {"en": "The page is where the student should go when asking about the project in Phase 2.", "ar": "هذه هي الصفحة التي يجب أن يذهب إليها الطالب عندما يسأل عن المشروع في المرحلة الثانية."}
+      ],
+      "actions": [
+        {"en": "Review project details and continue working on the phase requirements.", "ar": "مراجعة تفاصيل المشروع ومتابعة العمل على متطلبات المرحلة."}
+      ]
+    },
+    {
+      "file": "phase3_level2.php",
+      "title": {"en": "Phase 3 - Level 2", "ar": "المرحلة الثالثة - المستوى الثاني"},
+      "audience": "student",
+      "keywords": ["phase3 level2", "level 2", "challenge", "advanced phase", "المرحلة الثالثة", "مستوى 2", "تحدي"],
+      "purpose": {
+        "en": "This page belongs to an advanced Phase 3 workflow and is connected to APIs that generate challenges, read the student's current challenge, submit answers, and show results.",
+        "ar": "تنتمي هذه الصفحة إلى مسار متقدم في المرحلة الثالثة وهي مرتبطة بواجهات API لتوليد التحديات وقراءة التحدي الحالي للطالب وإرسال الحلول وعرض النتائج."
+      },
+      "details": [
+        {"en": "It is more interactive than a simple static page because it communicates with backend endpoints.", "ar": "هي أكثر تفاعلية من صفحة ثابتة عادية لأنها تتواصل مع واجهات خلفية."},
+        {"en": "It is the right page for challenge generation, submission, and outcome follow-up within that level.", "ar": "هي الصفحة المناسبة لتوليد التحديات والإرسال ومتابعة النتائج ضمن ذلك المستوى."}
+      ],
+      "actions": [
+        {"en": "Generate or load a challenge.", "ar": "توليد أو تحميل التحدي."},
+        {"en": "Submit the student's work and review the resulting output.", "ar": "إرسال عمل الطالب ومراجعة المخرجات الناتجة."}
+      ],
+      "flow": [
+        {"en": "Open the page -> load or generate challenge -> work on the task -> submit -> read the result.", "ar": "فتح الصفحة -> تحميل أو توليد التحدي -> العمل على المهمة -> الإرسال -> قراءة النتيجة."}
+      ]
+    },
+    {
+      "file": "job_simulator.php",
+      "title": {"en": "AI Job Simulator", "ar": "محاكي الوظائف بالذكاء الاصطناعي"},
+      "audience": "student",
+      "keywords": ["job simulator", "ai simulator", "simulation", "cv", "github", "محاكي الوظائف", "محاكاة", "cv"],
+      "purpose": {
+        "en": "This page runs a role-readiness simulation where the student submits role-related information such as a CV or GitHub link and receives an AI-driven evaluation.",
+        "ar": "تشغّل هذه الصفحة محاكاة لقياس الجاهزية الوظيفية حيث يقدّم الطالب معلومات مرتبطة بالدور مثل السيرة الذاتية أو رابط GitHub ثم يحصل على تقييم مدعوم بالذكاء الاصطناعي."
+      },
+      "details": [
+        {"en": "The simulator is designed to test readiness for roles such as engineering or technical tracks.", "ar": "تم تصميم المحاكي لاختبار الجاهزية لأدوار مثل المسارات الهندسية أو التقنية."},
+        {"en": "The quality of the submitted CV, links, and skills affects the final verdict and score.", "ar": "جودة السيرة الذاتية والروابط والمهارات المقدمة تؤثر على التقييم النهائي والدرجة."},
+        {"en": "After submission, the student usually moves to a report page to see the outcome in detail.", "ar": "بعد الإرسال ينتقل الطالب عادة إلى صفحة تقرير لمشاهدة النتيجة بالتفصيل."}
+      ],
+      "actions": [
+        {"en": "Select a role and submit the required input data.", "ar": "اختيار الدور وإرسال البيانات المطلوبة."},
+        {"en": "Run the simulation and wait for the report outcome.", "ar": "تشغيل المحاكاة وانتظار نتيجة التقرير."}
+      ]
+    },
+    {
+      "file": "job_simulator_report.php",
+      "title": {"en": "Job Simulator Report", "ar": "تقرير محاكي الوظائف"},
+      "audience": "student",
+      "keywords": ["simulator report", "report", "not ready", "ready", "strengths", "weaknesses", "تقرير المحاكاة", "غير جاهز"],
+      "purpose": {
+        "en": "This page explains the AI simulator result through a verdict, score, strengths, weaknesses, and role-specific observations.",
+        "ar": "تشرح هذه الصفحة نتيجة محاكي الوظائف من خلال الحكم النهائي والدرجة ونقاط القوة والضعف والملاحظات الخاصة بالدور."
+      },
+      "details": [
+        {"en": "It is where the student should look when asking what the simulator verdict means.", "ar": "هذه هي الصفحة التي ينبغي الرجوع إليها عندما يسأل الطالب ماذا تعني نتيجة المحاكي."},
+        {"en": "A verdict like Not Ready means the current evidence is still below the role's expectations.", "ar": "حكم مثل غير جاهز يعني أن الأدلة الحالية ما زالت أقل من متطلبات الدور."},
+        {"en": "The page is useful for improvement planning because it lists missing areas and positive points.", "ar": "الصفحة مفيدة لتخطيط التحسين لأنها تعرض الجوانب الناقصة والنقاط الإيجابية."}
+      ],
+      "actions": [
+        {"en": "Read the verdict and the detailed analysis.", "ar": "قراءة الحكم النهائي والتحليل التفصيلي."},
+        {"en": "Use the strengths and weaknesses to improve future submissions.", "ar": "استخدام نقاط القوة والضعف لتحسين الإرسال في المرات القادمة."}
+      ]
+    },
+    {
+      "file": "certificates.php",
+      "title": {"en": "Certificates", "ar": "الشهادات"},
+      "audience": "student",
+      "keywords": ["certificate", "certificates", "الشهادات", "شهادة"],
+      "purpose": {
+        "en": "This page is used to review or access the student's certificates inside the website.",
+        "ar": "تستخدم هذه الصفحة لمراجعة أو الوصول إلى شهادات الطالب داخل الموقع."
+      },
+      "details": [
+        {"en": "It belongs to the achievement and proof-of-completion area of the platform.", "ar": "تنتمي هذه الصفحة إلى منطقة الإنجازات وإثباتات الإكمال في المنصة."}
+      ],
+      "actions": [
+        {"en": "Open available certificates and review certificate-related information.", "ar": "فتح الشهادات المتاحة ومراجعة المعلومات المتعلقة بها."}
+      ]
+    },
+    {
+      "file": "certificate_view.php",
+      "title": {"en": "Certificate View", "ar": "عرض الشهادة"},
+      "audience": "student",
+      "keywords": ["certificate view", "open certificate", "عرض الشهادة"],
+      "purpose": {
+        "en": "This page opens or displays a specific certificate for closer review or printing.",
+        "ar": "تفتح هذه الصفحة شهادة محددة لعرضها بشكل أوضح أو تجهيزها للطباعة."
+      },
+      "details": [
+        {"en": "It is usually reached after choosing a certificate from a list page.", "ar": "يتم الوصول إليها عادة بعد اختيار شهادة من صفحة قائمة."}
+      ]
+    },
+    {
+      "file": "student-info.php",
+      "title": {"en": "Student Information", "ar": "معلومات الطالب"},
+      "audience": "student",
+      "keywords": ["student info", "information", "معلومات الطالب"],
+      "purpose": {
+        "en": "This page is related to student information display and can be used for data review or context inside the platform.",
+        "ar": "ترتبط هذه الصفحة بعرض معلومات الطالب ويمكن استخدامها لمراجعة البيانات أو السياق داخل المنصة."
+      },
+      "details": [
+        {"en": "It complements the profile-related journey.", "ar": "تكمل رحلة الصفحات المرتبطة بالملف الشخصي."}
+      ]
+    },
+    {
+      "file": "company.php",
+      "title": {"en": "Company Dashboard", "ar": "لوحة الشركة"},
+      "audience": "partner",
+      "keywords": ["company", "partner", "company dashboard", "dashboard company", "الشركة", "لوحة الشركة"],
+      "purpose": {
+        "en": "This is the dashboard for partner or company users. It is separate from the student area and is used to manage company-side activities.",
+        "ar": "هذه هي لوحة التحكم الخاصة بالشركات أو الشركاء. وهي منفصلة عن مساحة الطالب وتستخدم لإدارة الأنشطة من جهة الشركة."
+      },
+      "details": [
+        {"en": "The page checks the user role and prevents non-partner users from staying on the company area.", "ar": "تتحقق الصفحة من دور المستخدم وتمنع غير الشركاء من البقاء داخل مساحة الشركة."},
+        {"en": "It is related to other company pages such as analytics, phase pages, reviews, and submissions.", "ar": "ترتبط بصفحات شركات أخرى مثل التحليلات وصفحات المراحل والمراجعات والتسليمات."}
+      ],
+      "actions": [
+        {"en": "Open company workflows and management areas.", "ar": "فتح مسارات العمل ومناطق الإدارة الخاصة بالشركة."}
+      ]
+    },
+    {
+      "file": "company_analytics.php",
+      "title": {"en": "Company Analytics", "ar": "تحليلات الشركة"},
+      "audience": "partner",
+      "keywords": ["analytics", "company analytics", "تحليلات الشركة"],
+      "purpose": {
+        "en": "This page is intended for analytics and performance visibility from the company side.",
+        "ar": "هذه الصفحة مخصصة للتحليلات ومتابعة الأداء من جهة الشركة."
+      },
+      "details": [
+        {"en": "It is part of the partner-management area rather than the student journey.", "ar": "هي جزء من مساحة إدارة الشريك وليست من رحلة الطالب."}
+      ]
+    },
+    {
+      "file": "company_phase1.php",
+      "title": {"en": "Company Phase 1", "ar": "مرحلة الشركة 1"},
+      "audience": "partner",
+      "keywords": ["company phase 1", "phase1 company", "مرحلة الشركة 1"],
+      "purpose": {
+        "en": "A company-side page related to the first phase of company interaction or review workflow.",
+        "ar": "صفحة من جهة الشركة مرتبطة بالمرحلة الأولى من التفاعل أو المراجعة الخاصة بالشركة."
+      }
+    },
+    {
+      "file": "company_phase2.php",
+      "title": {"en": "Company Phase 2", "ar": "مرحلة الشركة 2"},
+      "audience": "partner",
+      "keywords": ["company phase 2", "phase2 company", "مرحلة الشركة 2"],
+      "purpose": {
+        "en": "A company-side page related to the second phase of partner workflow.",
+        "ar": "صفحة من جهة الشركة مرتبطة بالمرحلة الثانية من مسار الشريك."
+      }
+    },
+    {
+      "file": "company_phase3.php",
+      "title": {"en": "Company Phase 3", "ar": "مرحلة الشركة 3"},
+      "audience": "partner",
+      "keywords": ["company phase 3", "phase3 company", "مرحلة الشركة 3"],
+      "purpose": {
+        "en": "A company-side page related to the third phase of the company workflow.",
+        "ar": "صفحة من جهة الشركة مرتبطة بالمرحلة الثالثة من مسار الشركة."
+      }
+    },
+    {
+      "file": "company_reviews.php",
+      "title": {"en": "Company Reviews", "ar": "مراجعات الشركة"},
+      "audience": "partner",
+      "keywords": ["company reviews", "reviews", "مراجعات الشركة"],
+      "purpose": {
+        "en": "This page is for partner-side reviews, feedback, or assessment handling.",
+        "ar": "تستخدم هذه الصفحة للمراجعات أو التغذية الراجعة أو التعامل مع التقييمات من جهة الشركة."
+      }
+    },
+    {
+      "file": "company_student_submission.php",
+      "title": {"en": "Company Student Submission", "ar": "تسليمات الطلاب للشركة"},
+      "audience": "partner",
+      "keywords": ["student submission", "company student submission", "تسليمات الطلاب"],
+      "purpose": {
+        "en": "This page is for reviewing student submissions from the company perspective.",
+        "ar": "تستخدم هذه الصفحة لمراجعة تسليمات الطلاب من منظور الشركة."
+      }
+    },
+    {
+      "file": "company_chat.php",
+      "title": {"en": "Company Chat", "ar": "شات الشركة"},
+      "audience": "partner",
+      "keywords": ["company chat", "partner chat", "شات الشركة"],
+      "purpose": {
+        "en": "This is the company-side messaging page for communication and thread management.",
+        "ar": "هذه هي صفحة الرسائل من جهة الشركة للتواصل وإدارة المحادثات."
+      }
+    },
+    {
+      "file": "dashboard.php",
+      "title": {"en": "Admin Dashboard", "ar": "لوحة الإدارة"},
+      "audience": "admin",
+      "keywords": ["admin dashboard", "admin", "dashboard admin", "لوحة الإدارة", "الادمن"],
+      "purpose": {
+        "en": "This page is the administrator dashboard. It is protected by both login and role checks and is used for management operations rather than normal student use.",
+        "ar": "هذه الصفحة هي لوحة تحكم الإدارة. وهي محمية بتسجيل الدخول والتحقق من الدور وتستخدم لعمليات الإدارة وليس للاستخدام الطبيعي من قبل الطالب."
+      },
+      "details": [
+        {"en": "If the logged-in user is not an admin, the page redirects away from the admin area.", "ar": "إذا لم يكن المستخدم المسجل مديرًا، تقوم الصفحة بتحويله خارج منطقة الإدارة."},
+        {"en": "It is separate from both student and company dashboards.", "ar": "وهي منفصلة عن لوحة الطالب ولوحة الشركة."}
+      ],
+      "actions": [
+        {"en": "Handle administrative management tasks.", "ar": "تنفيذ مهام الإدارة والإشراف."}
+      ]
+    },
+    {
+      "file": "login.html",
+      "title": {"en": "Login Page", "ar": "صفحة تسجيل الدخول"},
+      "audience": "public",
+      "keywords": ["login", "sign in", "تسجيل الدخول", "الدخول"],
+      "purpose": {
+        "en": "This page authenticates the user and starts the website session needed to access protected pages.",
+        "ar": "تقوم هذه الصفحة بمصادقة المستخدم وبدء الجلسة اللازمة للوصول إلى الصفحات المحمية."
+      },
+      "details": [
+        {"en": "When a protected page sends the user back here, the usual reason is a missing or expired session.", "ar": "عندما تعيد صفحة محمية المستخدم إلى هنا، يكون السبب المعتاد هو انتهاء الجلسة أو عدم وجودها."}
+      ]
+    },
+    {
+      "file": "signup.html",
+      "title": {"en": "Signup Page", "ar": "صفحة إنشاء الحساب"},
+      "audience": "public",
+      "keywords": ["signup", "create account", "register", "انشاء حساب", "التسجيل"],
+      "purpose": {
+        "en": "This page is used to create a new account before the user can access authenticated areas of the website.",
+        "ar": "تستخدم هذه الصفحة لإنشاء حساب جديد قبل أن يتمكن المستخدم من الدخول إلى المناطق التي تتطلب تسجيل دخول."
+      }
+    },
+    {
+      "file": "logout.php",
+      "title": {"en": "Logout", "ar": "تسجيل الخروج"},
+      "audience": "all-authenticated-users",
+      "keywords": ["logout", "sign out", "تسجيل الخروج", "خروج"],
+      "purpose": {
+        "en": "This route ends the user session and removes access to protected pages until the user signs in again.",
+        "ar": "يقوم هذا المسار بإنهاء جلسة المستخدم وإزالة الوصول إلى الصفحات المحمية حتى يسجل الدخول مرة أخرى."
+      }
+    }
+  ],
+  "features": [
+    {
+      "name": "Authentication and Sessions",
+      "keywords": ["login", "logout", "session", "redirect login", "sign in", "تسجيل الدخول", "تسجيل الخروج", "الجلسة", "رجعني"],
+      "answer": {
+        "en": "Most important pages in the website are protected by PHP sessions. If the session user_id is missing, the page redirects to login.html. So being redirected to login usually means the session expired, was never created, or the page requires an authenticated user role.",
+        "ar": "أغلب الصفحات المهمة في الموقع محمية بجلسات PHP. إذا لم تكن قيمة user_id موجودة في الجلسة يتم تحويل المستخدم إلى login.html. لذلك فإن الرجوع إلى صفحة تسجيل الدخول يعني غالبًا أن الجلسة انتهت أو لم يتم إنشاؤها أو أن الصفحة تتطلب دور مستخدم مصادق عليه."
+      }
+    },
+    {
+      "name": "QOYNE Help Assistant",
+      "keywords": ["qoyne", "ask qoyne", "assistant", "help", "مساعدة", "اسأل qoyne"],
+      "answer": {
+        "en": "QOYNE is an in-page support assistant opened from the student dashboard. It explains the website, pages, buttons, workflows, results, uploads, courses, and navigation. It now answers in Arabic when the question is Arabic and in English when the question is English.",
+        "ar": "QOYNE هو مساعد دعم داخل الصفحة يتم فتحه من لوحة الطالب. يشرح الموقع والصفحات والأزرار ومسارات الاستخدام والنتائج والرفع والدورات والتنقل. وهو الآن يجيب بالعربية عندما يكون السؤال بالعربية وبالإنجليزية عندما يكون السؤال بالإنجليزية."
+      }
+    },
+    {
+      "name": "Courses and Learning",
+      "keywords": ["course", "courses", "playlist", "watch", "video", "lesson", "دورة", "الدورات", "فيديو", "درس"],
+      "answer": {
+        "en": "The learning area of the website is spread across course pages, playlists, and watch pages. A common flow is: open Courses or My Courses, select a course, open the playlist, then watch the lesson content.",
+        "ar": "منطقة التعلّم في الموقع موزعة على صفحات الدورات والقوائم وصفحات المشاهدة. والمسار المعتاد هو: فتح الدورات أو دوراتي، اختيار دورة، فتح قائمة التشغيل، ثم مشاهدة محتوى الدرس."
+      }
+    },
+    {
+      "name": "Uploads",
+      "keywords": ["upload", "file", "attachment", "plan", "experience", "certificate", "cv", "رفع", "ملف", "مرفق"],
+      "answer": {
+        "en": "The platform supports uploading several kinds of documents such as plans, experiences, certificates, and simulator-related files. The safe user flow is to select the file first, confirm that the file area shows it, and then submit.",
+        "ar": "المنصة تدعم رفع عدة أنواع من الملفات مثل الخطط والخبرات والشهادات والملفات المرتبطة بالمحاكي. والمسار الآمن للمستخدم هو اختيار الملف أولًا ثم التأكد من ظهوره في منطقة الملفات ثم تنفيذ الإرسال."
+      }
+    },
+    {
+      "name": "Project Phases",
+      "keywords": ["phase", "phase 2", "phase 3", "project", "level 2", "مرحلة", "مرحلة 2", "مرحلة 3", "مشروع"],
+      "answer": {
+        "en": "The website organizes student progress into stages. Phase 2 is centered on project work, while Phase 3 contains advanced activities such as collaboration, challenges, and final result or evaluation pages.",
+        "ar": "ينظم الموقع تقدم الطالب على شكل مراحل. المرحلة الثانية تركز على المشروع، بينما تحتوي المرحلة الثالثة على أنشطة متقدمة مثل التعاون والتحديات وصفحات النتائج أو التقييم النهائي."
+      }
+    },
+    {
+      "name": "AI Job Simulator",
+      "keywords": ["simulator", "job simulator", "readiness", "verdict", "not ready", "cv", "github", "محاكي", "جاهزية", "غير جاهز"],
+      "answer": {
+        "en": "The AI Job Simulator measures how ready a student is for a selected role. It can use data such as CV content and external links, then return a score, a verdict, strengths, weaknesses, and suggestions for improvement.",
+        "ar": "يقيس محاكي الوظائف بالذكاء الاصطناعي مدى جاهزية الطالب لدور محدد. وقد يستخدم بيانات مثل محتوى السيرة الذاتية والروابط الخارجية ثم يعيد درجة وحكمًا نهائيًا ونقاط قوة وضعف واقتراحات للتحسين."
+      }
+    },
+    {
+      "name": "Chat and Messaging",
+      "keywords": ["chat", "message", "thread", "conversation", "شات", "رسالة", "محادثة"],
+      "answer": {
+        "en": "The platform contains full chat pages for students and companies. These are different from the small dashboard helper chat because they are meant for ongoing messaging, threads, and communication history.",
+        "ar": "تحتوي المنصة على صفحات شات كاملة للطلاب والشركات. وهذه تختلف عن نافذة المساعدة الصغيرة في لوحة الطالب لأنها مخصصة للمراسلات المستمرة والخيوط وسجل المحادثات."
+      }
+    },
+    {
+      "name": "Roles in the Website",
+      "keywords": ["role", "student", "admin", "company", "partner", "دور", "طالب", "ادمن", "شركة", "شريك"],
+      "answer": {
+        "en": "The website is not only for students. It has a student experience, an admin dashboard, and partner/company pages. Access to these areas depends on the session and the user's role.",
+        "ar": "الموقع ليس مخصصًا للطلاب فقط. فيه تجربة للطالب ولوحة إدارة وصفحات للشركات أو الشركاء. والدخول إلى هذه المناطق يعتمد على الجلسة ودور المستخدم."
+      }
+    }
+  ],
+  "faq": [
+    {
+      "question": {"en": "Where can I see my results?", "ar": "أين أرى نتائجي؟"},
+      "keywords": ["where are my results", "my results", "results", "result page", "وين نتيجتي", "نتائجي", "النتائج"],
+      "answer": {
+        "en": "For Phase 3 outcomes, open my_phase3_results.php. If you mean the AI simulator specifically, then the detailed outcome is usually on job_simulator_report.php.",
+        "ar": "لنتائج المرحلة الثالثة افتح صفحة my_phase3_results.php. وإذا كنت تقصد نتيجة محاكي الوظائف تحديدًا فالتفاصيل تكون عادة في صفحة job_simulator_report.php."
+      }
+    },
+    {
+      "question": {"en": "Why was I redirected to login?", "ar": "لماذا تم إرجاعي إلى تسجيل الدخول؟"},
+      "keywords": ["redirect login", "back to login", "session expired", "رجعني لتسجيل الدخول", "طلعني", "الجلسة"],
+      "answer": {
+        "en": "The common reason is that the protected page could not find a valid session. Sign in again, then retry the page. If the page is role-restricted, make sure you are logged in with the correct role as well.",
+        "ar": "السبب الشائع هو أن الصفحة المحمية لم تجد جلسة صحيحة. سجّل الدخول من جديد ثم أعد فتح الصفحة. وإذا كانت الصفحة مقيّدة بدور معيّن فتأكد أيضًا أنك داخل بالحساب أو الدور الصحيح."
+      }
+    },
+    {
+      "question": {"en": "How do I open my profile?", "ar": "كيف أفتح ملفي الشخصي؟"},
+      "keywords": ["open profile", "my profile", "profile", "كيف أفتح الملف الشخصي", "الملف الشخصي"],
+      "answer": {
+        "en": "From the student dashboard, open the profile route or the avatar/account entry that leads to student_profile.php. That page contains your personal and account information.",
+        "ar": "من لوحة الطالب افتح المسار أو المدخل الذي يقود إلى student_profile.php مثل زر الحساب أو الأفاتار. هناك ستجد معلوماتك الشخصية ومعلومات الحساب."
+      }
+    },
+    {
+      "question": {"en": "What does Not Ready mean?", "ar": "ماذا تعني عبارة غير جاهز؟"},
+      "keywords": ["not ready", "verdict", "simulator verdict", "غير جاهز", "الحكم النهائي"],
+      "answer": {
+        "en": "In the simulator report, Not Ready means the currently submitted evidence still does not satisfy enough requirements for the selected role. Review the listed weaknesses and missing skills, then improve your CV, links, or supporting evidence.",
+        "ar": "في تقرير المحاكي، عبارة غير جاهز تعني أن الأدلة الحالية التي تم تقديمها لا تزال غير كافية لتلبية متطلبات الدور المحدد. راجع نقاط الضعف والمهارات الناقصة ثم حسّن السيرة الذاتية أو الروابط أو الملفات الداعمة."
+      }
+    },
+    {
+      "question": {"en": "How do I use QOYNE?", "ar": "كيف أستخدم QOYNE؟"},
+      "keywords": ["qoyne", "ask qoyne", "how to use qoyne", "كيف استخدم qoyne", "اسأل qoyne"],
+      "answer": {
+        "en": "From student-dashboard.php, click the Ask QOYNE button. The chat opens inside the same page. You can ask about the current page, any feature, where to find something, how to upload a file, where results are, or what a certain verdict means.",
+        "ar": "من صفحة student-dashboard.php اضغط زر Ask QOYNE. ستفتح نافذة الشات داخل نفس الصفحة. يمكنك السؤال عن الصفحة الحالية أو أي ميزة أو مكان شيء معين أو طريقة رفع ملف أو مكان النتائج أو معنى أي حكم أو نتيجة."
+      }
+    },
+    {
+      "question": {"en": "Can QOYNE answer in Arabic and English?", "ar": "هل يمكن لـ QOYNE أن يجيب بالعربي والإنجليزي؟"},
+      "keywords": ["arabic", "english", "language", "bilingual", "عربي", "انجليزي", "لغة"],
+      "answer": {
+        "en": "Yes. QOYNE now follows the language of the student's question. Arabic questions receive Arabic answers, and English questions receive English answers.",
+        "ar": "نعم. QOYNE أصبح الآن يتبع لغة سؤال الطالب. إذا كان السؤال بالعربية فسيجيب بالعربية، وإذا كان السؤال بالإنجليزية فسيجيب بالإنجليزية."
+      }
+    }
+  ]
+}

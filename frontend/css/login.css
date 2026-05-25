@@ -1,0 +1,62 @@
+* { box-sizing: border-box; font-family: Arial; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #0f172a;
+  color: white;
+}
+
+.card {
+  width: 330px;
+  background: #1e293b;
+  padding: 22px;
+  border-radius: 12px;
+}
+
+h1 { margin-top: 0; }
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #0b1220;
+  color: white;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#error {
+  margin: 0 0 10px;
+  min-height: 18px;
+  color: #ff6b6b;
+}
+
+.hint {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+.signup-btn{
+  margin-top:10px;
+  background:#fff;
+  color:#111;
+  border:1px solid #ccc;
+}
+form button{
+  width: 100%;
+}
+
+.signup-btn{
+  margin-top:10px;
+}

@@ -1,0 +1,64 @@
+[33mff2bd23[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: pull origin main: Fast-forward
+[33mbc9cbf2[m HEAD@{1}: reset: moving to HEAD
+[33mbc9cbf2[m HEAD@{2}: pull origin main: Fast-forward
+[33m1edc95e[m HEAD@{3}: pull origin main: Fast-forward
+[33meb08add[m HEAD@{4}: pull origin main: Fast-forward
+[33m9607e48[m HEAD@{5}: commit: عدلت الشات
+[33m8d17d37[m HEAD@{6}: pull origin main: Fast-forward
+[33mccce7e6[m HEAD@{7}: pull origin main: Fast-forward
+[33m41dc687[m HEAD@{8}: commit: عدلت company
+[33m9b4944d[m HEAD@{9}: commit: عدلت الادمن
+[33m2304016[m HEAD@{10}: commit: عدلت فيز 3
+[33m82ff234[m HEAD@{11}: pull origin main: Fast-forward
+[33m9df2fe4[m HEAD@{12}: commit: عدلت فيز 2
+[33m4ae4c23[m HEAD@{13}: pull origin main: Fast-forward
+[33m714c2f6[m HEAD@{14}: pull origin main: Fast-forward
+[33mb8d3b9a[m HEAD@{15}: commit: عدلت my_project.php
+[33m5ff35b6[m HEAD@{16}: commit: عدلت my_project.php
+[33mdd626d7[m HEAD@{17}: pull origin main: Fast-forward
+[33m38e5c4a[m HEAD@{18}: pull origin main: Fast-forward
+[33md5954df[m HEAD@{19}: commit (merge): resolve merge
+[33medccaf3[m HEAD@{20}: commit (merge): resolve conflict in index.php
+[33m441e8b9[m HEAD@{21}: commit: ضفت student-dashboard
+[33m923567f[m HEAD@{22}: commit (merge): ضفت student-dashboard
+[33m21110f0[m HEAD@{23}: commit: ضفت student-dashboard
+[33m837e897[m HEAD@{24}: commit: ضفت student-dashboard
+[33mb414644[m HEAD@{25}: pull origin main: Fast-forward
+[33m37c8885[m HEAD@{26}: pull origin main: Fast-forward
+[33mab9f107[m HEAD@{27}: commit: ضفت student-dashboard
+[33m2c9dfd4[m HEAD@{28}: commit (merge): عدلت ال index
+[33m0413949[m HEAD@{29}: commit: عدلت ال index
+[33m41ec9cb[m HEAD@{30}: pull origin main: Fast-forward
+[33m2ba4539[m HEAD@{31}: pull origin main: Fast-forward
+[33m3cd946c[m HEAD@{32}: commit (merge): Merge branch 'main' of https://code.mzn.dev/competition2026/ammanarab/utbn/utbn-web
+[33mb59e870[m HEAD@{33}: commit: ضفت student-dashboard
+[33m72b81b5[m HEAD@{34}: commit: ضفت student-dashboard
+[33maba7132[m HEAD@{35}: pull origin main: Fast-forward
+[33mbee4396[m HEAD@{36}: reset: moving to HEAD
+[33mbee4396[m HEAD@{37}: commit: ضفت student-dashboard
+[33m403e5ea[m HEAD@{38}: pull origin main: Fast-forward
+[33m91de8f0[m HEAD@{39}: commit (merge): ضفت student-dashboard
+[33m7507308[m HEAD@{40}: commit: ضفت student-dashboard
+[33mca381d4[m HEAD@{41}: commit: the sql server
+[33mf518ccf[m HEAD@{42}: commit: عدلت صفحة
+[33m94a7070[m HEAD@{43}: commit: عدلت صفحة company_phase3
+[33m8d52f4d[m HEAD@{44}: commit: عدلت صفحة company_phase2
+[33md2221f0[m HEAD@{45}: commit (merge): عدلت صفحة company_phase1
+[33md424cc5[m HEAD@{46}: commit: عدلت صفحة company_phase1
+[33m3c29999[m HEAD@{47}: commit: عدلت صفحة company
+[33mc14a9d5[m HEAD@{48}: commit: عدلت صفحة login
+[33m49d531f[m HEAD@{49}: pull origin main: Fast-forward
+[33m8cc1094[m HEAD@{50}: pull origin main: Fast-forward
+[33maf9fc0c[m HEAD@{51}: pull origin main: Fast-forward
+[33mc1e1efd[m HEAD@{52}: pull origin main: Fast-forward
+[33mbbdfd3a[m HEAD@{53}: commit: عدلت صفحة login
+[33md804f36[m HEAD@{54}: commit: عدلت صفحة login
+[33m49534a0[m HEAD@{55}: commit: عدلت صفحة login
+[33md59f8d9[m HEAD@{56}: commit: عدلت صفحة role-select.html وضفت صفة log-selection.html
+[33m202c41e[m HEAD@{57}: commit: I added role-select.html
+[33me64d437[m HEAD@{58}: pull origin main: Fast-forward
+[33m0270eab[m HEAD@{59}: commit: connect api of youtube with the website for courses
+[33mba282c1[m HEAD@{60}: commit: عملت تعديل على كلشي
+[33m3e0dfa0[m HEAD@{61}: commit: عملت تعديل على كلشي
+[33m36e9557[m HEAD@{62}: commit: عملت تعديل على كلشي
+[33mac17a83[m HEAD@{63}: clone: from https://code.mzn.dev/competition2026/ammanarab/utbn/utbn-web.git

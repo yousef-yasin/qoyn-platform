@@ -1,0 +1,81 @@
+/* ===== YouTube Courses Search ===== */
+
+.yt-card {
+  margin-top: 14px;
+}
+
+.yt-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.yt-input {
+  min-width: 260px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #2a2f45;
+  background: #0f172a;
+  color: #fff;
+  outline: none;
+}
+
+.yt-input::placeholder {
+  color: #94a3b8;
+}
+
+.yt-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.yt-item {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.yt-thumb {
+  width: 120px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.yt-info {
+  flex: 1;
+}
+
+.yt-title {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.yt-channel {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.yt-link {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.yt-link:hover {
+  background: #1d4ed8;
+}

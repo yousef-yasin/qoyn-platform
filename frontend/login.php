@@ -1,0 +1,530 @@
+<?php
+require_once __DIR__ . "/includes/auth.php";
+if (isset($_SESSION["user_id"])) {
+    $role = (string)($_SESSION["role"] ?? "student");
+    if ($role === "admin") {
+        header("Location: dashboard.php");
+    } elseif ($role === "partner") {
+        header("Location: company.php");
+    } else {
+        header("Location: student-dashboard.php#home");
+    }
+    exit;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QOYN | Login</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --navy:#0A2E5D;
+      --bg-left:#F3F4F6;
+      --text:#0B0B0B;
+      --muted:#9AA3AF;
+      --line:rgba(0,0,0,.18);
+      --shadow: 0 18px 50px rgba(0,0,0,.12);
+      --radius: 16px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family:"Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:#fff;
+      min-height:100vh;
+    }
+
+    .page{
+      height: 100vh;
+      min-height:100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .left, .right{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      height: 100vh;
+      transition: left 1.2s cubic-bezier(.22,.61,.36,1);
+    }
+
+    .left{
+      left:0;
+      width:70%;
+      background: var(--bg-left);
+      display:flex;
+      flex-direction:column;
+      padding: 28px 42px;
+    }
+
+    .right{
+      left:70%;
+      width:30%;
+      height: 100vh;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 26px;
+      position:relative;
+      overflow:hidden;
+
+      background:
+        radial-gradient(900px 500px at 30% 30%, rgba(255,255,255,.18), transparent 60%),
+        radial-gradient(700px 420px at 70% 65%, rgba(0,0,0,.18), transparent 55%),
+        linear-gradient(135deg, rgba(10,46,93,1), rgba(10,46,93,.86));
+    }
+
+    .page.partner-mode .right{ left:0; }
+    .page.partner-mode .left{ left:30%; }
+
+    .page.partner-mode .left .logo{
+      margin-left:auto;
+      text-align:right;
+    }
+
+    .logo{
+      font-family:"Montserrat", sans-serif;
+      font-weight:800;
+      font-size: 26px;
+      letter-spacing:.6px;
+      color: var(--navy);
+      user-select:none;
+    }
+
+    .left-center{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 18px 0;
+    }
+
+    .title{
+      font-family:"Montserrat", sans-serif;
+      font-weight:800;
+      font-size: 44px;
+      letter-spacing:-.6px;
+      margin: 0 0 14px 0;
+      color:#111;
+    }
+
+    .social{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      justify-content:center;
+      margin: 8px 0 18px;
+    }
+
+    .icon-btn{
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      display:grid;
+      place-items:center;
+      text-decoration:none;
+      background:#fff;
+      border: 1px solid rgba(0,0,0,.08);
+      color: rgba(0,0,0,.55);
+      box-shadow: 0 10px 25px rgba(0,0,0,.08);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+    }
+
+    .icon-btn:hover{
+      transform: translateY(-2px) scale(1.03);
+      color: var(--navy);
+      border-color: rgba(10,46,93,.35);
+      box-shadow: 0 16px 34px rgba(0,0,0,.14);
+    }
+
+    .icon-btn svg{ width: 18px; height:18px; }
+
+    .form{
+      width: min(420px, 92%);
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .field{
+      position:relative;
+      background:#fff;
+      border: 1px solid rgba(0,0,0,.10);
+      border-radius: 12px;
+      padding: 14px 14px 14px 46px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.08);
+      transition: border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .field:focus-within{
+      border-color: rgba(10,46,93,.45);
+      box-shadow: 0 14px 34px rgba(0,0,0,.12);
+    }
+
+    .field .in-ic{
+      position:absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(0,0,0,.35);
+    }
+
+    .field .in-ic svg{ width:18px; height:18px; }
+
+    .field input{
+      width:100%;
+      border:0;
+      outline:0;
+      background: transparent;
+      font-size: 14px;
+      font-weight:500;
+      color:#111;
+    }
+
+    .field input::placeholder{
+      color: rgba(0,0,0,.35);
+      font-weight:500;
+    }
+
+    .field input::placeholder{
+      color: rgba(0,0,0,.35);
+      font-weight:500;
+    }
+
+    .field select{
+      width:100%;
+      border:0;
+      outline:0;
+      background: transparent;
+      font-size: 14px;
+      font-weight:500;
+      color:#111;
+      appearance:none;
+      cursor:pointer;
+    }
+
+    .field select:invalid{
+      color: rgba(0,0,0,.35);
+    }
+
+    .partner-only{
+      display: none;
+    }
+
+    .page.partner-mode .partner-only{
+      display: block;
+    }
+
+    .forgot{
+      margin: 6px 0 0;
+      font-size: 13px;
+      color:#111;
+      font-weight:500;
+      display:inline-block;
+      text-decoration:none;
+    }
+
+    .forgot-underline{
+      width: 140px;
+      height: 1px;
+      background: var(--line);
+      margin: 6px auto 8px;
+      border-radius: 999px;
+    }
+
+    .actions{
+      display:flex;
+      gap: 12px;
+      justify-content:center;
+      margin-top: 6px;
+    }
+
+    .btn{
+      appearance:none;
+      border:0;
+      cursor:pointer;
+      border-radius: 14px;
+      padding: 12px 22px;
+      font-family:"Montserrat", sans-serif;
+      font-weight:800;
+      font-size: 13px;
+      letter-spacing:.3px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width: 150px;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, filter .18s ease;
+      box-shadow: 0 16px 34px rgba(0,0,0,.14);
+    }
+
+    .btn-primary{
+      background: var(--navy);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      transform: translateY(-3px);
+      filter: brightness(1.08);
+      box-shadow: 0 22px 48px rgba(0,0,0,.20);
+    }
+
+    .btn-primary:active{
+      transform: translateY(-1px);
+      filter: brightness(.98);
+    }
+
+    .right::before,
+    .right::after{
+      content:"";
+      position:absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 40px;
+      background: rgba(255,255,255,.10);
+      transform: rotate(18deg);
+      opacity:.55;
+    }
+    .right::before{ left:-120px; top: 40px; }
+    .right::after{
+      right:-140px;
+      bottom: 70px;
+      border-radius: 60px;
+      opacity:.35;
+    }
+
+    .right-card{
+      position:relative;
+      text-align:center;
+      max-width: 320px;
+      padding: 10px 8px;
+    }
+
+    .right-title{
+      font-family:"Montserrat", sans-serif;
+      font-weight:800;
+      font-size: 40px;
+      margin: 0 0 10px 0;
+      letter-spacing:-.5px;
+    }
+
+    .right-text{
+      margin: 0 0 18px 0;
+      color: rgba(255,255,255,.90);
+      font-size: 13.5px;
+      line-height: 1.8;
+    }
+
+    .btn-outline{
+      background: transparent;
+      border: 2px solid rgba(255,255,255,.85);
+      color:#fff;
+      box-shadow: none;
+      min-width: 210px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      transition: transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+    }
+
+    .btn-outline:hover{
+      transform: translateY(-3px);
+      background: #fff;
+      color: var(--navy);
+      border-color: #fff;
+    }
+
+    .btn-outline:active{ transform: translateY(-1px); }
+
+    /* error message */
+    #error{
+      margin-top: 10px;
+      min-height: 18px;
+      color:#b00020;
+      font-weight:600;
+      text-align:center;
+    }
+
+    @media (max-width: 980px){
+      .left, .right{
+        position: relative;
+        left: 0 !important;
+        width: 100% !important;
+        transition: none;
+      }
+      .page{ overflow: visible; }
+      .right{ min-height: 42vh; }
+      .left{ padding: 22px 18px; }
+      .title{ font-size: 36px; }
+      .right-title{ font-size: 34px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <!-- LEFT -->
+    <section class="left" aria-label="Student login">
+      <div class="logo">QOYN</div>
+
+      <div class="left-center">
+        <h1 class="title" id="formTitle">Login As Student</h1>
+
+        <div class="social" aria-label="Social login links">
+          <!-- Instagram -->
+          <a class="icon-btn" href="https://www.instagram.com/qoyn.jo?igsh=dnFoZ3pmMWZodzNo" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a class="icon-btn" href="https://www.linkedin.com/in/qoyn-jo-0b3aab3aa" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 4h4v16H4V4Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M10 10h4v10h-4V10Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M14 11c1-1 2-1.5 3.5-1.5 2.5 0 4.5 1.8 4.5 5.5V20h-4v-4.5c0-1.8-.7-2.8-2-2.8-1 0-1.6.5-2 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 7h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+<!-- Name -->
+<div class="field partner-only">
+  <span class="in-ic">
+    <!-- user icon -->
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Z" stroke="currentColor" stroke-width="2"/>
+      <path d="M3 21c0-4.4 4-7 9-7s9 2.6 9 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <input type="text" placeholder="Name">
+</div>
+
+        <form class="form" id="loginForm" autocomplete="on">
+          <label class="field">
+            <span class="in-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2"/>
+                <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <input id="email" type="email" name="email" placeholder="Email" required />
+            <input type="hidden" id="loginRole" name="type" value="student" />
+          </label>
+<!-- Partner Type -->
+<div class="field partner-only">
+  <span class="in-ic">
+    <!-- briefcase icon -->
+    <svg viewBox="0 0 24 24" fill="none">
+      <path d="M3 7h18v12H3V7Z" stroke="currentColor" stroke-width="2"/>
+      <path d="M8 7V5h8v2" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  </span>
+
+  <select>
+    <option value="" disabled selected>Select Your Partner Type</option>
+    <option>University</option>
+    <option>Company</option>
+    <option>Instructor</option>
+  </select>
+</div>
+
+          <label class="field">
+            <span class="in-ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 11V8a5 5 0 0 1 10 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M6 11h12v10H6V11Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <input id="password" type="password" name="password" placeholder="Password" required />
+          </label>
+
+          <a class="forgot" href="#" aria-label="Forgot your password">Forgot your password?</a>
+          <div class="forgot-underline" aria-hidden="true"></div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Login</button>
+            <a class="btn btn-primary" href="signup.php">Sign up</a>
+          </div>
+
+          <div id="error"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- RIGHT -->
+    <section class="right" aria-label="Partner login invitation">
+      <div class="right-card">
+        <h2 class="right-title" id="sideTitle">Hello Partner!</h2>
+        <p class="right-text" id="sideText">
+          If you are a company, tutor, university, or institution, log in as a Partner.
+        </p>
+
+        <button class="btn btn-outline" id="toggleModeBtn" type="button">
+          Login As Partner
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const page = document.querySelector(".page");
+    const formTitle = document.getElementById("formTitle");
+    const sideTitle = document.getElementById("sideTitle");
+    const sideText  = document.getElementById("sideText");
+    const toggleBtn = document.getElementById("toggleModeBtn");
+    const loginRole = document.getElementById("loginRole");
+
+    let partnerMode = false;
+
+    function applyMode(){
+      if(partnerMode){
+        page.classList.add("partner-mode");
+        formTitle.textContent = "Login As Partner";
+        sideTitle.textContent = "Hello, Student!";
+        sideText.textContent  = "Log in to continue your learning journey, earn QOYN Coins, and unlock real opportunities.";
+        toggleBtn.textContent = "Login As Student";
+        if (loginRole) loginRole.value = "partner";
+        window.partnerMode = true;
+
+      }else{
+        page.classList.remove("partner-mode");
+        formTitle.textContent = "Login As Student";
+        sideTitle.textContent = "Hello Partner!";
+        sideText.textContent  = "If you are a company, tutor, university, or institution, log in as a Partner.";
+        toggleBtn.textContent = "Login As Partner";
+        if (loginRole) loginRole.value = "student";
+        window.partnerMode = false;
+      }
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      partnerMode = !partnerMode;
+      applyMode();
+    });
+
+    applyMode();
+  </script>
+
+  
+  <script src="js/login.js"></script>
+
+</body>
+</html>

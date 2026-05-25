@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title data-i18n="home_page_title">QOYN | Home</title>
+  <script src="assets/js/i18n.js"></script>
+    <!-- Fonts قريبين من اللي بالصورة -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --navy:#0A2E5D;      /* لون اللوقو والدائرة */
+      --yellow:#FFC24A;    /* الأصفر */
+      --bg:#F6F7F9;        /* أبيض مائل للرمادي */
+      --text:#0B0B0B;
+      --muted:#2b2b2b;
+      --card:#ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 999px;
+      --container: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      overflow-x:hidden;
+    }
+
+    /* ====== NAVBAR ====== */
+    .nav-wrap{
+      position: fixed;
+      top:0; left:0; right:0;
+      z-index:9999;
+      padding: 18px 22px;
+      transition: background .25s ease, box-shadow .25s ease, padding .25s ease;
+      background: transparent;
+    }
+
+    .nav-wrap.scrolled{
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      padding: 12px 22px;
+    }
+
+    .nav{
+      max-width: var(--container);
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      gap:16px;
+    }
+.nav-login{
+  border: 1px solid rgba(10,46,93,.25);
+  font-weight:700;
+}
+
+.nav-login:hover{
+  background: var(--navy);
+  color:#fff !important;
+}
+
+    .logo{
+      font-family:"Montserrat", sans-serif;
+      font-weight:800;
+      font-size: 28px;
+      letter-spacing:.5px;
+      color:var(--navy);
+      text-decoration:none;
+      user-select:none;
+    }
+
+    .nav-spacer{flex:1}
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin:0;
+      padding:0;
+      list-style:none;
+      justify-content:flex-end;
+    }
+
+    .nav-links a{
+      position:relative;
+      text-decoration:none;
+      color:#111;
+      font-weight:500;
+      font-size:15px;
+      padding:10px 14px;
+      border-radius: var(--radius);
+      transition: color .2s ease, transform .2s ease, background .2s ease, font-weight .2s ease;
+      white-space:nowrap;
+    }
+
+    .nav-links a:hover{
+      color: var(--yellow);
+      transform: translateY(-2px);
+      font-weight:700;
+    }
+
+    .nav-links a.active{
+      background: var(--yellow);
+      color:#fff !important;
+      font-weight:800;
+    }
+
+
+.login-with-logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.login-logo{
+  height:60px;
+  margin-left: 50px;   
+}
+
+
+    /* Progress line */
+    .progress{
+      position:absolute;
+      top:0; left:0;
+      height:3px;
+      width:100%;
+      opacity:0;
+      transition: opacity .25s ease;
+      background: transparent;
+    }
+    .nav-wrap.scrolled .progress{ opacity:1; }
+    .progress > div{
+      height:100%;
+      width:0%;
+      background: var(--navy);
+      transition: width .08s linear;
+    }
+
+    /* ====== SECTIONS ====== */
+    main{ padding-top: 92px; }
+
+    section{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      scroll-margin-top: 92px;
+    }
+
+    .container{
+      max-width: var(--container);
+      margin:0 auto;
+      padding: 0 22px;
+      width:100%;
+    }
+
+    .home-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 40px;
+      align-items:center;
+    }
+
+    .hero-title{
+      font-family:"Montserrat", sans-serif;
+      font-size: 64px;
+      line-height: 1.05;
+      margin:0 0 18px 0;
+      font-weight:800;
+      letter-spacing:-.5px;
+    }
+
+    .navy-letter{ color: var(--navy); }
+
+    .hero-text{
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: #111;
+      max-width: 560px;
+      margin:0;
+      white-space: pre-line;
+    }
+
+    .hero-visual{
+      position:relative;
+      width:100%;
+      height: 520px;
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+    }
+/* wrapper يسمح للرأس يطلع برا */
+.circle-wrap{
+  position: relative;
+  width: 490px;      /* حجم الدائرة */
+  height: 490px;
+  overflow: visible;
+}
+
+/* الدائرة تقص الجسم */
+.circle{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;          /* ✅ قص دائري للجسم */
+  box-shadow: var(--shadow);
+}
+
+/* الصورة داخل الدائرة (الجسم) */
+.circle .hero-in{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 490px;
+  height: auto;
+
+  bottom: -140px;            /* ✅ نزلي الجسم لتحت (زيدي/قللي) */
+}
+
+/* الصورة اللي فوق (الرأس فقط) */
+.circle-wrap .hero-top{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 490px;
+  height: auto;
+
+  bottom: -140px;            /* ✅ لازم نفس bottom تبع hero-in */
+  z-index: 10;
+  pointer-events: none;
+
+  /* ✅ اعرضي الجزء العلوي فقط (الرأس) */
+  clip-path: inset(0 0 62% 0);   /* غيري 62% حسب المكان اللي بدك يوقف عنده القص */
+}
+
+
+/* الصورة داخل الدائرة */
+.circle img{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 490px;
+  height: auto;
+
+  bottom: -100px;      /* ✅ نزليها (زيدي الرقم) */
+  
+  /* ✅ تعتيم من الأسفل فقط (اندماج مع لون الدائرة) */
+  -webkit-mask-image: linear-gradient(to bottom,
+      rgba(0,0,0,1) 70%,
+      rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(to bottom,
+      rgba(0,0,0,1) 70%,
+      rgba(0,0,0,0) 100%
+  );
+}
+
+
+
+
+    .image-hint{
+      position:absolute;
+      bottom:-18px;
+      right:0;
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius: 16px;
+      padding:10px 12px;
+      font-size:12px;
+      color:#111;
+      box-shadow: var(--shadow);
+    }
+
+    .placeholder{
+      background: #fff;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+    .placeholder h2{
+      font-family:"Montserrat", sans-serif;
+      margin:0 0 10px 0;
+      font-size:34px;
+      letter-spacing:-.4px;
+    }
+    .placeholder p{
+      margin:0;
+      color:#333;
+      line-height:1.8;
+      max-width: 720px;
+    }
+
+    /* =========================================================
+       ✅ ABOUT (كما هو عندك)
+       ========================================================= */
+    .about-section{
+      min-height: 80vh;
+      background: var(--bg);
+      align-items: center;
+    }
+
+    .about-inner{
+      width:100%;
+      position:relative;
+      padding: 10px 0 0;
+    }
+
+    .about-title{
+      font-family:"Montserrat", sans-serif;
+      font-weight:800;
+      font-size: 44px;
+      line-height: 1.08;
+      letter-spacing: -.6px;
+      margin-top: 150px;
+      color:#111;
+      max-width: 560px;
+    }
+    .about-title .qoyn{
+      color: var(--navy);
+    }
+
+    .about-canvas{
+      position:relative;
+      width:100%;
+      height: 520px;
+    }
+
+    .phase{
+      position:absolute;
+      width: 320px;
+      color: var(--navy);
+    }
+
+    .phase .big-num{
+      position:absolute;
+      top: -62px;
+      left: -10px;
+      font-family:"Montserrat", sans-serif;
+      font-weight:800;
+      font-size: 120px;
+      color: rgba(0,0,0,.12);
+      letter-spacing: -2px;
+      line-height: 1;
+      -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+    }
+
+    .phase h3{
+      margin: 0 0 6px 0;
+      font-family:"Montserrat", sans-serif;
+      font-weight:800;
+      font-size: 15px;
+      color:#111;
+    }
+
+    .phase h4{
+      margin: 0 0 10px 0;
+      font-family:"Montserrat", sans-serif;
+      font-weight:700;
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    .phase p{
+      margin:0;
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(10,46,93,.85);
+    }
+
+    .phase1{ left: 6%;  top: 33%; }
+    .phase2{ left: 38%; top: 18%; }
+    .phase3{ right: 6%; top: 8%; }
+
+    /* =========================================================
+       ✅ COURSES (UPDATED as requested)
+       ========================================================= */
+    .courses-section{
+      background: var(--bg);
+      align-items: center;
+    }
+
+    .courses-wrap{
+      width:100%;
+      padding: 18px 0 0;
+    }
+
+    .courses-title{
+      text-align:center;
+      font-family:"Montserrat", sans-serif;
+      font-weight:800;
+      font-size: 54px;
+      letter-spacing:-.6px;
+      line-height:1.05;
+      color:#0A2E5D;;
+      margin: 0 0 26px 0;
+    }
+
+    /* Horizontal slider container */
+    .paths-viewport{
+      position: relative;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 18px 6px 22px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 22px;
+    }
+
+    /* hide scrollbar (keep scroll functionality) */
+    .paths-viewport::-webkit-scrollbar{ height: 10px; }
+    .paths-viewport::-webkit-scrollbar-track{ background: rgba(0,0,0,.06); border-radius: 999px; }
+    .paths-viewport::-webkit-scrollbar-thumb{ background: rgba(0,0,0,.16); border-radius: 999px; }
+    .paths-viewport::-webkit-scrollbar-thumb:hover{ background: rgba(0,0,0,.22); }
+
+    .paths-track{
+      display:flex;
+      gap: 22px;
+      width: max-content;
+      padding: 4px 10px;
+      align-items: stretch;
+    }
+
+    .path-card{
+      flex: 0 0 auto;
+      width: 360px;
+      border-radius: 24px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 12px 34px rgba(0,0,0,.08);
+      overflow: hidden;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+      transform-origin: center;
+    }
+
+    .path-card:hover{
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 22px 60px rgba(0,0,0,.14);
+      background: rgba(10,46,93,.04);
+      border-color: rgba(10,46,93,.25);
+    }
+
+    .path-media{
+      height: 160px;                /* أقل من نصف المستطيل */
+      background : #0b0b0b ;       /* صورة سوداء مؤقتة */
+    }
+.path-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+    .path-body{
+      padding: 18px 18px 16px;
+      color:#0A2E5D;;
+    }
+
+    .path-h{
+      margin: 0 0 8px 0;
+      font-family:"Montserrat", sans-serif;
+      font-weight:800;
+      font-size: 20px;
+      color:#0A2E5D;
+      letter-spacing:-.2px;
+    }
+
+    .path-sub{
+      margin: 0 0 10px 0;
+      font-weight: 700;
+      color: #111;
+      font-size: 14px;
+    }
+
+    .path-desc{
+      margin: 0 0 12px 0;
+      color: rgba(0,0,0,.72);
+      font-size: 13.5px;
+      line-height: 1.75;
+    }
+
+    .path-list-title{
+      margin: 0 0 8px 0;
+      font-weight: 800;
+      color:#111;
+      font-size: 13px;
+    }
+
+    .path-list{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(0,0,0,.75);
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-title{ font-size: 46px; }
+      .hero-visual{ height: 420px; justify-content:center; }
+      .circle{ width: 340px; height:340px; }
+      .circle img{ width: 290px; }
+
+      .about-title{ font-size: 32px; max-width: 100%; }
+      .about-canvas{ height: auto; padding-bottom: 26px; }
+      .phase{ position: relative; width: 100%; margin-top: 18px; left:auto; right:auto; top:auto; }
+      .phase .big-num{ left: 0; }
+
+      .courses-title{ font-size: 38px; }
+      .path-card{ width: 320px; }
+    }
+    /* =========================================================
+   ✅ HOW QOYN WORKS (Timeline + Scroll Fill)
+   ========================================================= */
+.how-section{
+  background:#fff; /* أبيض */
+  align-items:flex-start;
+  padding: 40px 0 70px;
+}
+
+.how-wrap{
+  width:100%;
+  padding-top: 40px;
+}
+
+.how-title{
+  text-align:center;
+  font-family:"Montserrat", sans-serif;
+  font-weight:800;
+  font-size: 54px;
+  letter-spacing:-.6px;
+  margin: 0 0 28px 0;
+  color:#111;
+}
+.how-title .qoyn{ color: var(--navy); }
+
+.how-timeline{
+  position:relative;
+  width:100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 10px 0 20px;
+}
+
+/* center line */
+.how-line{
+  position:absolute;
+  left:50%;
+  top: 78px;             /* يبدأ تحت العنوان */
+  transform: translateX(-50%);
+  width: 3px;
+  
+  background: rgba(10,46,93,.18);
+  border-radius: 999px;
+  overflow:hidden;
+  height: calc(100% - 250px);/* ينتهي قبل النص الأخير */
+}
+
+.how-line-fill{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:0%;
+  background: var(--navy);
+  border-radius: 999px;
+  transition: height .10s linear;
+}
+
+/* end dot */
+.how-line-end{
+  position:absolute;
+  left:50%;
+  bottom:-18px;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius:50%;
+
+  /* ✅ دائرة نهاية واضحة */
+  background: #fff;
+  border: 3px solid rgba(10,46,93,.18);
+
+  transition: background .2s ease, transform .2s ease, border-color .2s ease;
+}
+
+.how-line-end.active{
+  background: var(--navy);
+  border-color: var(--navy);
+  transform: translateX(-50%) scale(1.08);
+}
+
+
+/* rows */
+.how-row{
+  position:relative;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  align-items:start;
+
+  /* ✅ تقليل المسافة بين الستيبس */
+  margin : 18px 0;
+}
+
+
+/* left row content on left */
+.how-row.left .how-card{
+  grid-column: 1 / 2;
+  justify-self: end;
+  text-align: right;
+
+  margin-right: 54px;
+}
+
+/* right row content on right */
+.how-row.right .how-card{
+  grid-column: 2 / 3;
+  justify-self: start;
+  text-align:left;
+  margin-left: 54px;
+}
+
+/* card */
+.how-card{
+  width: min(430px, 100%);
+  padding: 12px 4px 12px;
+}
+
+.step-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  /* ✅ بيضاوي على قد النص */
+  width: auto;
+  height: auto;
+  padding: 10px 16px;
+  border-radius: 999px;
+
+  background: var(--navy);
+  color:#fff;
+
+  font-family:"Montserrat", sans-serif;
+  font-weight:800;
+  font-size: 13px;
+  letter-spacing:.4px;
+
+  margin-bottom: 10px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.10);
+}
+
+
+.step-title{
+  margin: 0 0 8px 0;
+  font-family:"Montserrat", sans-serif;
+  font-weight:800;
+  font-size: 14px;
+  color:#111;
+}
+
+.step-text{
+  margin:0;
+  color: rgba(0,0,0,.70);
+  font-size: 13.5px;
+  line-height: 1.85;
+  max-width: 420px;
+}
+
+/* bottom text */
+.how-bottom{
+  position:relative;
+  text-align:center;
+  padding-top: 52px;
+  margin-top: 30px;
+}
+
+.how-bottom-title{
+  margin:0 0 10px 0;
+  font-family:"Montserrat", sans-serif;
+  font-weight:800;
+  font-size: 28px;
+  color: var(--navy);
+  letter-spacing:-.3px;
+}
+
+.how-bottom-text{
+  margin:0 auto;
+  max-width: 760px;
+  color:#111;
+  font-size: 13.5px;
+  line-height: 1.9;
+}
+
+/* responsive */
+@media (max-width: 980px){
+  .how-title{ font-size: 38px; }
+  .how-line{ left: 18px; transform:none; }
+  .how-row{
+    grid-template-columns: 1fr;
+    margin: 34px 0;
+  }
+  .how-row.left .how-card,
+  .how-row.right .how-card{
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin: 0 0 0 54px;
+  }
+  .how-bottom{ padding-left: 24px; padding-right: 24px; }
+}
+/* =========================================================
+   ✅ JOIN US (Top CTA + Navy Social Footer)
+   ========================================================= */
+.join-section{
+  background: transparent;
+  padding: 0;
+    min-height: 40vh;
+}
+
+/* ✅ Join فقط 40% من ارتفاع الشاشة + مفصول */
+.join-top{
+  background: var(--bg);
+  min-height: 40vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.join-top-inner{
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+
+
+
+
+.join-title{
+  font-family:"Montserrat", sans-serif;
+  font-weight:800;
+  font-size: 44px;
+  letter-spacing:-.3px;
+  margin: 0 0 10px 0;
+  color:#111;
+  text-transform: none;
+}
+
+.join-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 14px 28px;
+  border-radius: 14px;
+  background:#111;
+  color:#fff;
+  text-decoration:none;
+  font-family:"Montserrat", sans-serif;
+  font-weight:800;
+  font-size: 14px;
+  letter-spacing:.3px;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  box-shadow: 0 14px 28px rgba(0,0,0,.14);
+}
+
+.join-btn:hover{
+  transform: translateY(-3px);
+  background: var(--navy);
+  box-shadow: 0 20px 42px rgba(0,0,0,.22);
+}
+
+/* =========================
+   ✅ SOCIAL (Footer like image 3)
+   ========================= */
+.footer2-section{
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+background: var(--navy);
+  color: #fff;
+
+}
+
+.footer2-grid{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr; /* يسار/منتصف/يمين */
+  gap: 80px;
+  align-items: start;
+}
+
+.footer2-brand{
+      font-family:"Montserrat", sans-serif;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  margin-bottom: 16px;
+}
+
+.f2-QOYN{ color: #dbdbdb; }  
+
+.footer2-desc{
+  margin: 0;
+  color: rgba(255,255,255,.80);
+  font-size: 14px;
+  line-height: 1.9;
+  max-width: 52ch;
+}
+
+.footer2-title{
+  font-size: 16px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.footer2-links{
+  display: grid;
+  gap: 12px;
+}
+
+.footer2-links a{
+  color: rgba(255,255,255,.86);
+  text-decoration: none;
+  font-weight: 700;
+  width: fit-content;
+  transition: color .15s ease, transform .15s ease;
+}
+
+.footer2-links a:hover{
+  color: #fff;
+  transform: translateX(2px);
+}
+
+.footer2-icons{
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.social-ic{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.85);
+  transition: transform .18s ease, background .18s ease;
+  text-decoration: none;
+}
+
+.social-ic svg{
+  width: 20px;
+  height: 20px;
+}
+
+.social-ic:hover{
+  transform: translateY(-3px);
+  background: rgba(255,255,255,.14);
+}
+
+.footer2-divider{
+  margin: 34px 0 14px;
+  height: 1px;
+  background: rgba(255,255,255,.10);
+}
+
+.footer2-bottom{
+  text-align: center;
+  color: rgba(255,255,255,.75);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Mobile */
+@media (max-width: 980px){
+  .footer2-grid{
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .footer2-section{
+    min-height: auto;
+    padding: 40px 0;
+  }
+}
+
+/* ✅ FIX JOIN CENTER (Override global section styles) */
+#join.join-section{
+  min-height: 40vh !important;  /* بدل 100vh */
+  display: block !important;     /* يلغي flex تبع section العام */
+}
+
+#join .join-top{
+  width: 100%;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;       /* توسيط حقيقي */
+}
+
+#join .join-top-inner{
+  width: auto !important;
+  margin: 0 auto !important;     /* توسيط داخل الصفحة */
+  text-align: center !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;           /* توسيط الزر */
+  justify-content: center;
+}
+
+/* =========================
+   ✅ HOME Floating Coins + Coins Badge
+   (HOME only)
+   ========================= */
+
+/* خلي الـ circle-wrap مرجع للـ absolute */
+#home .circle-wrap{ position:relative; }
+
+/* --- Floating coin images --- */
+#home .coin-float{
+  position:absolute;
+  width: 74px;
+  height: auto;
+  z-index: 70;
+  pointer-events:none;
+  filter: drop-shadow(0 14px 24px rgba(0,0,0,.18));
+  animation: coinFloat 3.2s ease-in-out infinite;
+}
+
+/* أماكن 3 كوين (عدليهم اذا بدك) */
+#home .coin-right{
+  right: -30px;
+  top: 70px;
+  transform: rotate(12deg);
+}
+
+#home .coin-left-top{
+  left: -22px;
+  top: 28px;
+  transform: rotate(-10deg);
+}
+
+#home .coin-left-bottom{
+  left: -12px;
+  bottom: 70px;
+  transform: rotate(10deg);
+}
+
+/* حركة خفيفة */
+@keyframes coinFloat{
+  0%,100%{ transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50%{ transform: translateY(-10px) rotate(var(--rot, 0deg)); }
+}
+
+/* اعطاء كل واحدة دوران ثابت */
+#home .coin-right{ --rot: 12deg; }
+#home .coin-left-top{ --rot: -10deg; }
+#home .coin-left-bottom{ --rot: 10deg; }
+
+/* --- Coins badge (oval) --- */
+#home .coins-badge{
+  position:absolute;
+  right:-12px;          /* يمين الدائرة */
+  bottom:60px;         /* أسفل شوي */
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  padding: 14px 18px;
+  border-radius: 999px;
+
+ background: rgba(104, 164, 194, 0.35);
+  border: 1px solid rgba(255,255,255,.35);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
+  z-index: 80;
+}
+
+#home .coins-ic{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display:grid;
+  place-items:center;
+
+  background: rgba(255, 194, 74, .85);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.35);
+  flex: 0 0 44px;
+}
+
+#home .coins-ic img{
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display:block;
+}
+
+#home .coins-txt{
+  display:flex;
+  flex-direction:column;
+  line-height: 1.05;
+}
+
+#home .coins-num{
+  font-family:"Montserrat", sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  color:#fff;
+  letter-spacing: .2px;
+}
+
+#home .coins-lbl{
+  margin-top: 4px;
+  font-family:"Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(255,255,255,.92);
+}
+
+/* موبايل: خففي الأحجام */
+@media (max-width: 980px){
+  #home .coin-float{ width: 56px; }
+  #home .coins-badge{ right: 0; bottom: -8px; transform: scale(.92); transform-origin: bottom right; }
+}
+
+.lang-dropdown{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.lang-switch{
+  position:relative;
+  width:88px;
+  height:46px;
+  padding:5px;
+  border-radius:999px;
+  background:linear-gradient(180deg, #f4f7fb 0%, #eef2f7 100%);
+  border:1px solid rgba(10,46,93,.10);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.85),
+    0 6px 18px rgba(10,46,93,.06);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  overflow:hidden;
+  direction:ltr; /* مهم جدًا حتى يظل EN يسار و AR يمين */
+}
+
+.lang-switch-thumb{
+  position:absolute;
+  top:5px;
+  left:5px;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:var(--navy);
+  box-shadow:
+    0 8px 20px rgba(10,46,93,.22),
+    inset 0 1px 0 rgba(255,255,255,.18);
+  transition:left .28s ease;
+  z-index:1;
+}
+
+/* عند العربية: الدائرة تنتقل لليمين فوق AR */
+.lang-switch.is-ar .lang-switch-thumb{
+  left:47px;
+}
+
+.lang-option{
+  position:relative;
+  z-index:2;
+  width:36px;
+  height:36px;
+  border:none;
+  background:transparent;
+  border-radius:50%;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-family:"Montserrat", sans-serif;
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:.2px;
+  color:#b7c0cf; /* النص غير النشط */
+  transition:color .2s ease, transform .18s ease, opacity .2s ease;
+  flex:0 0 36px;
+}
+
+.lang-option:hover{
+  transform:scale(1.04);
+}
+
+/* النص النشط أبيض */
+.lang-option.active{
+  color:#fff !important;
+  opacity:1;
+}
+
+/* النص غير النشط يظل ظاهر وواضح */
+.lang-switch:not(.is-ar) #langOptionAr{
+  color:#b7c0cf !important;
+}
+
+.lang-switch:not(.is-ar) #langOptionEn{
+  color:#fff !important;
+}
+
+.lang-switch.is-ar #langOptionAr{
+  color:#fff !important;
+}
+
+.lang-switch.is-ar #langOptionEn{
+  color:#b7c0cf !important;
+}
+
+@media (max-width:980px){
+  .lang-switch{
+    width:84px;
+    height:44px;
+  }
+
+  .lang-switch-thumb{
+    width:34px;
+    height:34px;
+  }
+
+  .lang-switch.is-ar .lang-switch-thumb{
+    left:45px;
+  }
+
+  .lang-option{
+    width:34px;
+    height:34px;
+    flex:0 0 34px;
+    font-size:13px;
+  }
+}
+.step-text,
+.how-bottom-text{
+  white-space: normal;
+}
+
+.hero-title-wrap{
+  position:relative;
+}
+
+.hero-title-en,
+.hero-title-i18n{
+  display:block;
+}
+
+.hero-title .hero-navy{
+  color: var(--navy);
+}
+
+/* English: show styled title only */
+html[lang="en"] .hero-title-en{
+  display:block;
+}
+html[lang="en"] .hero-title-i18n{
+  display:none;
+}
+
+/* Arabic: show translated title only */
+html[lang="ar"] .hero-title-en{
+  display:none;
+}
+html[lang="ar"] .hero-title-i18n{
+  display:block;
+}
+
+.about-title-wrap{
+  position:relative;
+}
+
+.about-title-en,
+.about-title-i18n{
+  display:block;
+}
+
+.about-title .about-navy{
+  color: var(--navy);
+}
+
+/* English: show styled title only */
+html[lang="en"] .about-title-en{
+  display:block;
+}
+html[lang="en"] .about-title-i18n{
+  display:none;
+}
+
+/* Arabic: show translated title only */
+html[lang="ar"] .about-title-en{
+  display:none;
+}
+html[lang="ar"] .about-title-i18n{
+  display:block;
+}
+.how-title-wrap{
+  position:relative;
+}
+
+.how-title-en,
+.how-title-i18n{
+  display:block;
+}
+
+.how-title .how-navy{
+  color: var(--navy);
+}
+
+/* English */
+html[lang="en"] .how-title-en{
+  display:block;
+}
+html[lang="en"] .how-title-i18n{
+  display:none;
+}
+
+/* Arabic */
+html[lang="ar"] .how-title-en{
+  display:none;
+}
+html[lang="ar"] .how-title-i18n{
+  display:block;
+}
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <header class="nav-wrap" id="navWrap">
+    <div class="progress"><div id="progressBar"></div></div>
+
+    <nav class="nav">
+      <a class="logo" href="#home">QOYN</a>
+
+                  <div class="nav-spacer"></div>
+
+      <div class="lang-dropdown" id="langDropdown">
+  <div class="lang-switch" id="langSwitch" aria-label="Language switcher">
+    <span class="lang-switch-thumb" id="langSwitchThumb"></span>
+
+    <button class="lang-option" id="langOptionEn" data-lang="en" type="button" aria-label="English">
+      EN
+    </button>
+
+    <button class="lang-option" id="langOptionAr" data-lang="ar" type="button" aria-label="Arabic">
+      AR
+    </button>
+  </div>
+
+  <!-- نخليهم موجودين فقط حتى ما ننكسر أي اعتماد قديم -->
+  <button class="lang-trigger" id="langTrigger" type="button" hidden>
+    <span id="currentLangText">English</span>
+    <span class="lang-arrow" id="langArrow">▼</span>
+  </button>
+
+  <div class="lang-menu" id="langMenu" hidden></div>
+</div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a data-section="home" href="#home" class="active" data-i18n="nav_home">Home</a></li>
+<li><a data-section="about" href="#about" data-i18n="nav_about">About</a></li>
+<li><a data-section="courses" href="#courses" data-i18n="nav_courses">Courses</a></li>
+<li><a data-section="how" href="#how" data-i18n="nav_how_qoyn_works">How QOYN works</a></li>
+<li><a data-section="join" href="#join" data-i18n="nav_join_us">Join us</a></li>
+     <li class="login-with-logo">
+  <a href="login.html" class="nav-login" data-i18n="login">Login</a>
+  <img src="uploads/MONKEY.png" alt="Logo" class="login-logo">
+</li>
+
+
+
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home">
+      <div class="container">
+        <div class="home-grid">
+          <div>
+            <h1 class="hero-title hero-title-wrap">
+  <span class="hero-title-en" id="heroTitleEn" aria-hidden="true">
+    <span class="hero-navy">Q</span>uality
+    <span class="hero-navy">O</span>ptimizes
+    <span class="hero-navy">Y</span>our Value
+    <span class="hero-navy">Nexus</span>
+  </span>
+
+  <span class="hero-title-i18n" id="heroTitleI18n" data-i18n="hero_title">
+    Quality Optimizes Your Value Nexus
+  </span>
+</h1>
+
+            <p class="hero-text" data-i18n="hero_text">
+A smart AI-powered platform that helps students transform their learning, skills, and real achievements into measurable value.
+QOYN connects academic data, courses, projects, and experiences into one personalized journey — guiding students from university to real career opportunities.
+
+Through intelligent skill analysis and a value-based reward system, every effort you make is recognized, measured, and rewarded.
+</p>
+          </div>
+
+          <div class="hero-visual">
+      <div class="circle-wrap">
+
+  <!-- ✅ Floating coins (3) -->
+  <img class="coin-float coin-right" src="uploads/qoinn.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
+  <img class="coin-float coin-left-top" src="uploads/qoinn.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
+  <img class="coin-float coin-left-bottom" src="uploads/qoinn.png" alt="" aria-hidden="true" onerror="this.style.display='none'">
+
+  <!-- ✅ Oval coins badge -->
+  <div class="coins-badge">
+    <div class="coins-ic">
+      <img src="uploads/qoinn.png" alt="coin" onerror="this.style.display='none'">
+    </div>
+    <div class="coins-txt">
+      <div class="coins-num">+20,000</div>
+      <div class="coins-lbl">coins</div>
+    </div>
+  </div>
+
+  <div class="circle">
+    <img class="hero-in" src="uploads/PERSON.png" alt="Hero Image">
+  </div>
+
+  <!-- ✅ نفس الصورة لكن نعرض منها الجزء العلوي فقط -->
+  <img class="hero-top" src="uploads/PERSON.png" alt="" aria-hidden="true">
+</div>
+
+
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ ABOUT -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="about-inner">
+          <h2 class="about-title about-title-wrap">
+  <span class="about-title-en" id="aboutTitleEn" aria-hidden="true">
+    A Smarter Journey from Learning to Opportunity with
+    <span class="about-navy">QOYN</span>
+  </span>
+
+  <span class="about-title-i18n" id="aboutTitleI18n" data-i18n="about_title">
+    A Smarter Journey from Learning to Opportunity with QOYN
+  </span>
+</h2>
+
+          <div class="about-canvas">
+            <div class="phase phase1">
+              <div class="big-num">1</div>
+              <h3 data-i18n="phase_1_title">Phase 1</h3>
+<h4 data-i18n="phase_1_heading">Learn &amp; Earn Value</h4>
+<p data-i18n="phase_1_text">
+  Build in-demand skills through practical, AI-evaluated courses.
+  Earn QOYN Coins based on the quality and impact of what you learn.
+</p>
+            </div>
+
+            <div class="phase phase2">
+              <div class="big-num">2</div>
+              <h3 data-i18n="phase_2_title">Phase 2</h3>
+<h4 data-i18n="phase_2_heading">Practice on Real Projects</h4>
+<p data-i18n="phase_2_text">
+  Apply your skills to real-world projects and simulations.
+  Get evaluated by AI and earn more value through hands-on experience.
+</p>
+            </div>
+
+           <div class="phase phase3">
+  <div class="big-num">3</div>
+  <h3 data-i18n="phase_3_title">Phase 3</h3>
+  <h4 data-i18n="phase_3_heading">Collaborate &amp; Access Opportunities</h4>
+  <p data-i18n="phase_3_text">
+    Work in AI-matched teams and access real projects, internships, and jobs.
+    Turn your skills into verified career opportunities before graduation.
+  </p>
+</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ✅ COURSES (UPDATED) -->
+    <section id="courses" class="courses-section">
+      <div class="container">
+        <div class="courses-wrap">
+<h2 class="courses-title" data-i18n="courses_title">Explore Learning Paths</h2>
+          <div class="paths-viewport" id="pathsViewport" aria-label="Learning paths slider">
+           <div class="paths-track" id="pathsTrack">
+
+  <!-- AI -->
+  <article class="path-card">
+    <div class="path-media">
+      <img src="assets/ai.png" alt="Artificial Intelligence">
+    </div>
+    <div class="path-body">
+      <h3 class="path-h" data-i18n="course_ai_title">Artificial Intelligence</h3>
+<div class="path-sub" data-i18n="course_ai_sub">Machine Learning & Smart Systems</div>
+<p class="path-desc" data-i18n="course_ai_desc">
+  Learn how intelligent systems work, from machine learning models to real AI applications.
+</p>
+<div class="path-list-title" data-i18n="courses_inside">Courses inside:</div>
+      <ul class="path-list">
+        <li>Python for AI</li>
+        <li>Machine Learning</li>
+        <li>Deep Learning Basics</li>
+        <li>AI Applications</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- Computer Science -->
+  <article class="path-card">
+    <div class="path-media">
+      <img src="assets/computer-science.png" alt="Computer Science">
+    </div>
+    <div class="path-body">
+      <h3 class="path-h">Computer Science</h3>
+      <div class="path-sub">Programming & Systems Fundamentals</div>
+      <p class="path-desc">
+        Understand the core foundations of computing including programming, systems, and algorithms.
+      </p>
+      <div class="path-list-title">Courses inside:</div>
+      <ul class="path-list">
+        <li>Programming Fundamentals</li>
+        <li>Data Structures</li>
+        <li>Algorithms</li>
+        <li>Operating Systems</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- Software Engineering -->
+  <article class="path-card">
+    <div class="path-media">
+      <img src="assets/software-engineering.png" alt="Software Engineering">
+    </div>
+    <div class="path-body">
+      <h3 class="path-h">Software Engineering</h3>
+      <div class="path-sub">Building Real Software Systems</div>
+      <p class="path-desc">
+        Learn how professional software is designed, developed, tested, and deployed in real projects.
+      </p>
+      <div class="path-list-title">Courses inside:</div>
+      <ul class="path-list">
+        <li>Web Development</li>
+        <li>Backend Development</li>
+        <li>Software Architecture</li>
+        <li>Project Development</li>
+
+    </div>
+  </article>
+
+  <!-- Cyber Security -->
+  <article class="path-card">
+    <div class="path-media">
+      <img src="assets/cyber-security.png" alt="Cyber Security">
+    </div>
+    <div class="path-body">
+      <h3 class="path-h">Cyber Security</h3>
+      <div class="path-sub">Security & Ethical Hacking</div>
+      <p class="path-desc">
+        Protect systems, detect vulnerabilities, and learn ethical hacking and security defense techniques.
+      </p>
+      <div class="path-list-title">Courses inside:</div>
+      <ul class="path-list">
+        <li>Network Security</li>
+        <li>Ethical Hacking</li>
+        <li>Web Security</li>
+        <li>Security Tools</li>
+      </ul>
+    </div>
+  </article>
+
+</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- باقي الصفحات كما هي بدون تعديل -->
+  
+
+    <section id="how" class="how-section">
+  <div class="container">
+    <div class="how-wrap">
+     <h2 class="how-title how-title-wrap">
+  <span class="how-title-en" aria-hidden="true">
+    How <span class="how-navy">QOYN</span> Works
+  </span>
+
+  <span class="how-title-i18n" data-i18n="how_qoyn_works_title">
+    How QOYN Works
+  </span>
+</h2>
+      <div class="how-timeline" id="howTimeline">
+        <!-- Center Line -->
+        <div class="how-line">
+          <div class="how-line-fill" id="howLineFill"></div>
+          <div class="how-line-end" id="howLineEnd"></div>
+        </div>
+
+        <!-- Step 1 (Right) -->
+        <div class="how-row right" data-step="1">
+          <div class="how-card">
+            <div class="step-badge" data-i18n="step_1_badge">Step 1</div>
+<h4 class="step-title" data-i18n="step_1_title">1. Sign Up &amp; Start Your Profile</h4>
+<p class="step-text">
+  <span data-i18n="step_1_line_1">Create your QOYN account and set up your student profile.</span><br/>
+  <span data-i18n="step_1_line_2">The platform begins analyzing your academic background,</span><br/>
+  <span data-i18n="step_1_line_3">skills, and goals to guide your journey from day one.</span>
+</p>
+          </div>
+        </div>
+
+        <!-- Step 2 (Left) -->
+       <div class="how-row left" data-step="2">
+  <div class="how-card">
+    <div class="step-badge" data-i18n="step_2_badge">Step 2</div>
+    <h4 class="step-title" data-i18n="step_2_title">Learn, Complete Tasks &amp; Earn Coins</h4>
+<p class="step-text">
+  <span data-i18n="step_2_line_1">Purchase courses within your chosen learning path, complete</span><br/>
+  <span data-i18n="step_2_line_2">practical tasks, and take skill-based assessments.</span><br/>
+  <span data-i18n="step_2_line_3">Every achievement is evaluated by AI, and you earn QOYN</span><br/>
+  <span data-i18n="step_2_line_4">Coins based on quality and progress.</span>
+</p>
+  </div>
+</div>
+        <!-- Step 3 (Right) -->
+        <div class="how-row right" data-step="3">
+  <div class="how-card">
+    <div class="step-badge" data-i18n="step_3_badge">Step 3</div>
+    <h4 class="step-title" data-i18n="step_3_title">Start Real Projects</h4>
+<p class="step-text">
+  <span data-i18n="step_3_line_1">Once you earn 10,000 QOYN Coins, you unlock access to individual</span><br/>
+  <span data-i18n="step_3_line_2">real-world projects. These projects</span><br/>
+  <span data-i18n="step_3_line_3">help you apply your skills independently and</span><br/>
+  <span data-i18n="step_3_line_4">build verified experience before graduation.</span>
+</p>
+  </div>
+</div>
+
+        <!-- Step 4 (Left) -->
+        <div class="how-row left" data-step="4">
+  <div class="how-card">
+    <div class="step-badge" data-i18n="step_4_badge">Step 4</div>
+    <h4 class="step-title" data-i18n="step_4_title">Join Major Team Projects</h4>
+<p class="step-text">
+  <span data-i18n="step_4_line_1">At 20,000 QOYN Coins, you enter</span><br/>
+  <span data-i18n="step_4_line_2">the next level: large-scale</span><br/>
+  <span data-i18n="step_4_line_3">collaborative projects. QOYN</span><br/>
+  <span data-i18n="step_4_line_4">matches you with multidisciplinary</span><br/>
+  <span data-i18n="step_4_line_5">teams to solve real company</span><br/>
+  <span data-i18n="step_4_line_6">challenges and access career-</span><br/>
+  <span data-i18n="step_4_line_7">level opportunities.</span>
+</p>
+  </div>
+</div>
+
+        <!-- Bottom message (Centered) -->
+        <div class="how-bottom">
+  <h3 class="how-bottom-title" data-i18n="how_bottom_title">Your Future Built Step by Step</h3>
+<p class="how-bottom-text">
+  <span data-i18n="how_bottom_line_1">With QOYN, learning is no longer just about completing courses — it’s</span><br/>
+  <span data-i18n="how_bottom_line_2">about creating real value. Every task you finish, every coin you earn, and</span><br/>
+  <span data-i18n="how_bottom_line_3">every project you unlock brings you closer to real-world experience and</span><br/>
+  <span data-i18n="how_bottom_line_4">career opportunities. QOYN connects your skills, your progress, and your</span><br/>
+  <span data-i18n="how_bottom_line_5">future in one intelligent journey. Simple as that.</span>
+</p>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="join" class="join-section">
+  <div class="join-top">
+    <div class="join-top-inner">
+      <h2 class="join-title" data-i18n="join_title">start with step one now!</h2>
+<a class="join-btn" href="login.html" data-i18n="register_now">Register Now</a>
+    </div>
+  </div>
+</section>
+
+
+
+       <!-- ✅ Footer / Social (Dark section 75% height) -->
+        <section id="social" class="footer2-section">
+<div class="container">
+    <div class="footer2-grid">
+
+      <!-- Left -->
+      <div>
+        <div class="footer2-brand">
+          <span class="f2-QOYN">QOYN</span>
+        </div>
+
+        <p class="footer2-desc" data-i18n="footer_desc">
+  QOYN is an AI-powered platform that transforms learning into measurable value.
+  We guide students through structured skill paths, reward achievements with Coins, and connect them to real projects and career opportunities before graduation.
+</p>
+      </div>
+
+      <!-- Middle -->
+      <div>
+<div class="footer2-title" data-i18n="quick_links">Quick Links</div>
+        <nav class="footer2-links">
+          <a href="#home" data-i18n="nav_home">Home</a>
+<a href="#about" data-i18n="nav_about">About</a>
+<a href="#courses" data-i18n="nav_courses">Courses</a>
+<a href="#how" data-i18n="nav_how_qoyn_works">How QOYN works</a>
+<a href="#join" data-i18n="nav_join_us">Join us</a>
+        </nav>
+      </div>
+
+      <!-- Right -->
+      <div>
+<div class="footer2-title" data-i18n="follow_us">Follow Us</div>
+        <div class="footer2-icons">
+          <a class="social-ic" href="https://www.instagram.com/qoyn.jo?igsh=dnFoZ3pmMWZodzNo" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M17.5 6.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </a>
+
+          <a class="social-ic" href="https://www.linkedin.com/in/qoyn-jo-0b3aab3aa" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 4h4v16H4V4Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M10 10h4v10h-4V10Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M14 11c1-1 2-1.5 3.5-1.5 2.5 0 4.5 1.8 4.5 5.5V20h-4v-4.5c0-1.8-.7-2.8-2-2.8-1 0-1.6.5-2 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 7h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer2-divider"></div>
+
+    <div class="footer2-bottom" data-i18n="footer_bottom_text">
+  QOYN is a skill-based learning and career platform powered by AI. © 2026 QOYN.
+</div>
+
+  </div>
+</section>
+
+
+       
+</section>
+
+
+  <script>
+    // ===== Navbar scroll behavior + progress =====
+    const navWrap = document.getElementById("navWrap");
+    const progressBar = document.getElementById("progressBar");
+
+    function updateScrollUI(){
+      const y = window.scrollY || document.documentElement.scrollTop;
+      navWrap.classList.toggle("scrolled", y > 10);
+
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const p = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      progressBar.style.width = p.toFixed(2) + "%";
+    }
+    window.addEventListener("scroll", updateScrollUI, {passive:true});
+    updateScrollUI();
+
+    // ===== Active link highlight by section in view =====
+    const links = document.querySelectorAll("#navLinks a");
+    const sections = Array.from(document.querySelectorAll("main section[id]"));
+
+    function setActive(id){
+      links.forEach(a => a.classList.toggle("active", a.dataset.section === id));
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if(visible && visible.target && visible.target.id){
+        setActive(visible.target.id);
+        history.replaceState(null, "", "#" + visible.target.id);
+      }
+    }, {
+      root: null,
+      threshold: [0.25, 0.4, 0.6]
+    });
+
+    sections.forEach(sec => observer.observe(sec));
+
+    const initial = (location.hash || "#home").replace("#","");
+    setActive(initial);
+
+    // =========================================================
+    // ✅ COURSES: Auto horizontal movement + loop + pause on hover
+    // =========================================================
+    const viewport = document.getElementById("pathsViewport");
+    const track = document.getElementById("pathsTrack");
+
+    // duplicate content for seamless loop
+    track.innerHTML = track.innerHTML + track.innerHTML;
+
+    let isPaused = false;
+    let rafId = null;
+    let speed = 0.6; // movement speed
+
+    function tick(){
+      if(!isPaused && viewport){
+        viewport.scrollLeft += speed;
+
+        const half = track.scrollWidth / 2;
+        // reset when reaching the duplicated half
+        if(viewport.scrollLeft >= half){
+          viewport.scrollLeft = viewport.scrollLeft - half;
+        }
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    // pause when hover any card (and keep hover effect from CSS)
+    viewport.addEventListener("mouseover", (e) => {
+      const card = e.target.closest(".path-card");
+      if(card) isPaused = true;
+    });
+
+    viewport.addEventListener("mouseout", (e) => {
+      const card = e.target.closest(".path-card");
+      if(card) isPaused = false;
+    });
+
+    // mouse wheel => horizontal scroll
+    viewport.addEventListener("wheel", (e) => {
+      // only if user scrolls vertically (typical wheel)
+      if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+        e.preventDefault();
+        viewport.scrollLeft += e.deltaY;
+      }
+    }, {passive:false});
+
+    // start
+    tick();
+    // =========================================================
+// ✅ HOW Timeline: fill line based on scroll position
+// =========================================================
+const howTimeline = document.getElementById("howTimeline");
+const howLineFill = document.getElementById("howLineFill");
+const howLineEnd  = document.getElementById("howLineEnd");
+
+function updateHowTimeline(){
+  if(!howTimeline || !howLineFill) return;
+
+  const line = howTimeline.querySelector(".how-line");
+  if(!line) return;
+
+  const rect = line.getBoundingClientRect();
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+
+  // نعتبر "مؤشر القراءة" منتصف الشاشة
+  const markerY = vh * 0.52;
+
+  // حساب نسبة التعبئة داخل الخط
+  const start = rect.top;                 // بداية الخط بالنسبة للڤيو بورت
+  const end   = rect.bottom;              // نهاية الخط
+  const total = end - start;
+
+  let progress = (markerY - start) / total; // 0..1
+  progress = Math.max(0, Math.min(1, progress));
+
+  howLineFill.style.height = (progress * 100).toFixed(2) + "%";
+
+  // دائرة النهاية تصير زرقاء لما توصل للنهاية
+  if(progress >= 0.98){
+    howLineEnd.classList.add("active");
+  }else{
+    howLineEnd.classList.remove("active");
+  }
+}
+
+// اربطها مع نفس سكرول الصفحة بدون ما نلمس أي شيء ثاني
+window.addEventListener("scroll", updateHowTimeline, {passive:true});
+window.addEventListener("resize", updateHowTimeline);
+updateHowTimeline();
+
+  </script>
+
+<script>
+(function () {
+  const langSwitch = document.getElementById("langSwitch");
+  const enBtn = document.getElementById("langOptionEn");
+  const arBtn = document.getElementById("langOptionAr");
+  const currentLangText = document.getElementById("currentLangText");
+
+  if (!langSwitch || !enBtn || !arBtn) return;
+
+  function getLangSafe() {
+    if (typeof getCurrentLang === "function") {
+      return getCurrentLang() || "en";
+    }
+    return localStorage.getItem("lang") || document.documentElement.lang || "en";
+  }
+
+  function updateSwitchUI(lang) {
+    const isAr = lang === "ar";
+
+    langSwitch.classList.toggle("is-ar", isAr);
+    enBtn.classList.toggle("active", !isAr);
+    arBtn.classList.toggle("active", isAr);
+
+    if (currentLangText) {
+      currentLangText.textContent = isAr ? "العربية" : "English";
+    }
+  }
+
+  function applyLangFallback(lang) {
+    localStorage.setItem("lang", lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.dispatchEvent(new CustomEvent("languageChanged"));
+  }
+
+  function changeLang(lang) {
+    if (typeof setLanguage === "function") {
+      setLanguage(lang);
+      return;
+    }
+
+    if (typeof changeLanguage === "function") {
+      changeLanguage(lang);
+      return;
+    }
+
+    applyLangFallback(lang);
+  }
+
+  enBtn.addEventListener("click", function () {
+    changeLang("en");
+    updateSwitchUI("en");
+  });
+
+  arBtn.addEventListener("click", function () {
+    changeLang("ar");
+    updateSwitchUI("ar");
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    updateSwitchUI(getLangSafe());
+  });
+
+  window.addEventListener("load", function () {
+    updateSwitchUI(getLangSafe());
+  });
+
+  document.addEventListener("languageChanged", function () {
+    setTimeout(function () {
+      updateSwitchUI(getLangSafe());
+    }, 0);
+  });
+})();
+</script>
+<script>
+(function () {
+  function syncHeroTitleLang() {
+    let lang = "en";
+
+    if (typeof getCurrentLang === "function") {
+      lang = getCurrentLang() || "en";
+    } else {
+      lang = localStorage.getItem("lang") || document.documentElement.lang || "en";
+    }
+
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  }
+
+  document.addEventListener("DOMContentLoaded", syncHeroTitleLang);
+  window.addEventListener("load", syncHeroTitleLang);
+
+  document.addEventListener("languageChanged", function () {
+    setTimeout(syncHeroTitleLang, 0);
+    setTimeout(syncHeroTitleLang, 80);
+  });
+})();
+</script>
+</body>
+</html>
+
+

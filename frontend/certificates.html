@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>الشهادات</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body style="display:block">
+  <div class="container" style="max-width:900px">
+    <div class="topbar">
+      <div>
+        <h1>الشهادات</h1>
+        <div class="muted">الشهادة تُنشأ بعد وصولك 10000 coins (Phase 1)</div>
+      </div>
+      <a class="btn ghost" href="index.php">رجوع</a>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <ul class="list" id="list"></ul>
+      <div class="muted" id="msg" style="min-height:20px"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+  <script>
+    async function load(){
+      const me = await apiGet("me.php");
+      const r = await apiGet("certificate_my.php");
+      const ul = document.getElementById("list");
+      ul.innerHTML = "";
+      if (!r.certificates.length) {
+        document.getElementById("msg").textContent = "لا يوجد شهادات بعد.";
+        return;
+      }
+      r.certificates.forEach(c => {
+        const li = document.createElement("li");
+        li.className = "item";
+        li.innerHTML = `
+          <div style="flex:1">
+            <b>${escapeHtml(c.title)}</b>
+            <div class="muted">${escapeHtml(c.issued_at)}</div>
+          </div>
+          <a class="btn primary" href="certificate_view.php?cert_id=${c.id}">عرض/طباعة</a>
+        `;
+        ul.appendChild(li);
+      });
+    }
+    load().catch(()=>location.replace("login.html"));
+  </script>
+</body>
+</html>
