@@ -1,0 +1,7 @@
+.env
+cache/
+uploads/
+__pycache__/
+*.zip
+node_modules/
+vendor/
